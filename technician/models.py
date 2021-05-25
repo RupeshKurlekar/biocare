@@ -1,6 +1,6 @@
 from django.core.validators import RegexValidator
 from django.db import models
-
+from master.models import Priority
 name_regex = RegexValidator(regex=r'^[a-zA-Z ]+$', message="Please enter valid name")
 
 
@@ -12,8 +12,8 @@ class Technician(models.Model):
     TECH_PASSWORD = models.CharField(max_length=255)
     TECH_IMG = models.ImageField(upload_to="technician_profile_pic")  # image
     TECH_ADDRESS = models.TextField(max_length=255)
-    TIME = models.DateTimeField(auto_now=True)
-    TECH_STATUS = models.CharField(max_length=50, default='Inactive')
+    CREATED_AT = models.DateTimeField(auto_now_add=True)
+    IS_APPROVED = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'Technician'
@@ -36,3 +36,16 @@ class TechnicianLogin(models.Model):
 
     def __str__(self):
         return self.TECHNICIAN
+
+class TechnicianPriority(models.Model):
+    PRIORITY = models.ForeignKey(Priority, on_delete=models.CASCADE, null=False, blank=False)
+    TECHNICIAN = models.ForeignKey(Technician, on_delete=models.CASCADE, blank=True,null=True)
+    TECHNICIAN_PRICE = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'Technician Priority'
+    
+    def __str__(self):
+        return self.PRIORITY
+
+

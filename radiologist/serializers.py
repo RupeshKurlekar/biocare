@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Radiologist, RadiologistReportMap, RadiologistReportFiles, RadiologistPmt
+from .models import Radiologist, RadiologistReportMap, RadiologistReportFiles, RadiologistPmt,RadiologistPriority
 
 
 class RadiologistSerializers(serializers.ModelSerializer):
@@ -23,4 +23,9 @@ class RadiologistReportFilesSerializers(serializers.ModelSerializer):
 class RadiologistPmtSerializers(serializers.ModelSerializer):
     class Meta:
         model = RadiologistPmt
+        fields = '__all__'
+
+class RadiologistPrioritySerializers(serializers.ModelSerializer):
+    class Meta:
+        model = RadiologistPriority
         fields = '__all__'

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Technician, TechnicianLogin
+from .models import Technician, TechnicianLogin,TechnicianPriority
 
 
 # Register your models here.
@@ -11,3 +11,4 @@ class TechnicianAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Technician, TechnicianAdmin)
+admin.site.register(TechnicianPriority)

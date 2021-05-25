@@ -7,11 +7,12 @@ from django.shortcuts import render
 from django.utils import timezone
 from rest_framework.views import APIView
 
-from .models import TechnicianLogin, Technician
+from .models import TechnicianLogin, Technician ,TechnicianPriority
 from .serializers import TechnicianSerializers, TechnicianListSerializers
 import logging
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
+from radiologist.models import Radiologist, RadiologistLogin
 logger = logging.getLogger()
 
 
@@ -23,7 +24,7 @@ class TechnicianView(APIView):
         Get all Technician
         """
         try:
-            serializer = TechnicianListSerializers(Technician.objects.filter(TECH_STATUS='Active'), many=True)
+            serializer = TechnicianListSerializers(Technician.objects.filter(IS_APPROVED=True), many=True)
             return JsonResponse({"message": "listed all", "data": serializer.data}, status=200)
         except Exception as e:
             info_message = "Internal Server Error"
@@ -80,46 +81,109 @@ class TechnicianView(APIView):
             return JsonResponse({'error': str(info_message)}, status=500)
 
 
-class LoginTechnician(APIView):
-
+class LoginView(APIView):
+    
     def post(self, request):
         try:
 
             message = "no data found for given details"
             status = 404
             data = dict()
-            mobile = request.POST.get('TECH_MOB').strip()
-            password = request.POST.get('TECH_PASSWORD').strip().lower()
+            mobile = request.POST.get('MOB_NO')
+            password = request.POST.get('PASSWORD')
+            login_type = request.POST.get('TYPE')
+            if login_type=="technician":
+                technician = Technician.objects.get(TECH_MOB__iexact=mobile)
+                if technician:
+                    if technician.IS_APPROVED:
+                        check_pwd = check_password(password, technician.TECH_PASSWORD)
+                        if check_pwd:
+                            request.session['TECH_ID'] = technician.id
+                            request.session['TECH_NAME'] = technician.TECH_NAME
+                            request.session['TECH_EMAIL'] = technician.TECH_EMAIL
+                            request.session['TECH_ADDRESS'] = technician.TECH_ADDRESS
+                            request.session['is_authenticated'] = True
+                            request.session['type']="technician"
+                            request.session.create()
+                            TechnicianLogin.objects.create(TECHNICIAN=technician, SESSION_ID=request.session.session_key,
+                                                        LOGIN_DATETIME=datetime.datetime.now())
 
-            technician = Technician.objects.get(TECH_MOB__iexact=mobile)
+                            request.session['SESSION_ID'] = request.session.session_key
+                            message = "technician logged in successfully"
+                            status = 200
+                            data['id'] = technician.id
 
-            if technician:
-                if technician.TECH_STATUS=='Active':
-                    check_pwd = check_password(password, technician.TECH_PASSWORD)
-                    if check_pwd:
-                        request.session['TECH_ID'] = technician.id
-                        request.session['TECH_NAME'] = technician.TECH_NAME
-                        request.session['TECH_EMAIL'] = technician.TECH_EMAIL
-                        request.session['TECH_ADDRESS'] = technician.TECH_ADDRESS
-                        request.session.create()
-                        TechnicianLogin.objects.create(TECHNICIAN=technician, SESSION_ID=request.session.session_key,
-                                                       LOGIN_DATETIME=datetime.datetime.now())
 
-                        request.session['SESSION_ID'] = request.session.session_key
-                        message = "technician logged in successfully"
-                        status = 200
-                        data['id'] = technician.id
+                            data['redirect_url'] = "/technician/index"
 
-                        data['redirect_url'] = "/dashboard"
-
-                        return JsonResponse({"message": message, "data": data}, status=status)
+                            return JsonResponse({"message": message, "data": data}, status=status)
+                        else:
+                            return JsonResponse({'error': str("Incorrect mobile number or password")}, status=500)
                     else:
-                        return JsonResponse({'error': str("Incorrect mobile number or password")}, status=500)
-                else:
-                    return JsonResponse({'error': str("Technician is not approved ")}, status=500)
+                        return JsonResponse({'error': str("Technician is not approved ")}, status=500)
+            
+            if login_type=="super":
+                super = Super.objects.get(SUPER_MOB__iexact=mobile)
+                if super:
+
+                    if super.SUPER_STATUS=='Active':
+                        check_pwd = check_password(password, super.TECH_PASSWORD)
+                        if check_pwd:
+                            request.session['SUPER_ID'] = super.id
+                            request.session['SUPER_NAME'] = super.SUPER_NAME
+                            request.session['SUPER_EMAIL'] = super.SUPER_EMAIL
+                            request.session.create()
+                            TechnicianLogin.objects.create(SUPER=super, SESSION_ID=request.session.session_key,
+                                                        LOGIN_DATETIME=datetime.datetime.now())
+
+                            request.session['SESSION_ID'] = request.session.session_key
+                            message = "super user logged in successfully"
+                            status = 200
+                            data['id'] = super.id
+
+                            data['redirect_url'] = "/super/index"
+
+                            return JsonResponse({"message": message, "data": data}, status=status)
+                        else:
+                            return JsonResponse({'error': str("Incorrect mobile number or password")}, status=500)
+                    else:
+                        return JsonResponse({'error': str("Super is not approved ")}, status=500)
+
+            if login_type=="radiologist":
+                radiologist = Radiologist.objects.get(RDLG_MOB_NO__iexact=mobile)
+                if radiologist:
+                    if radiologist.IS_APPROVED:
+                        check_pwd = check_password(password, radiologist.RDLG_PASSWORD)
+                        if check_pwd:
+                            request.session['RDLG_ID'] = radiologist.id
+                            request.session['RDLG_NAME'] = radiologist.RDLG_NAME
+                            request.session['RDLG_EMAIL'] = radiologist.RDLG_EMAIL
+                            request.session['is_authenticated'] = True
+                            request.session['type']="radiologist"
+                            request.session.create()
+                            RadiologistLogin.objects.create(RADIOLOGIST=radiologist, SESSION_ID=request.session.session_key,
+                                                        LOGIN_DATETIME=datetime.datetime.now())
+
+                            request.session['SESSION_ID'] = request.session.session_key
+                            message = "radiologist logged in successfully"
+                            status = 200
+                            data['id'] = radiologist.id
+
+
+                            data['redirect_url'] = "/radiologist/index"
+
+                            return JsonResponse({"message": message, "data": data}, status=status)
+                        else:
+                            return JsonResponse({'error': str("Incorrect mobile number or password")}, status=500)
+                    else:
+                        return JsonResponse({'error': str("Radiologist is not approved ")}, status=500)
 
         except Technician.DoesNotExist:
             return JsonResponse({'error': str("Technician does not exist")}, status=500)
+        except Radiologist.DoesNotExist:
+            return JsonResponse({'error': str("Radiologist does not exist")}, status=500)
+        except Super.DoesNotExist:
+                return JsonResponse({'error': str("Super does not exist")}, status=500)
 
         except Exception as error:
             print(error)
@@ -129,18 +193,34 @@ class LoginTechnician(APIView):
             return JsonResponse({'error': str(info_message)}, status=500)
 
 
-class TechnicianLogout(APIView):
+class LogoutView(APIView):
     def post(self, request):
         """
         Logout technician
         """
         try:
-            if TechnicianLogin.objects.filter(SESSION_ID=request.session['SESSION_ID']).exists():
-                technician_login = TechnicianLogin.objects.get(SESSION_ID=request.session['SESSION_ID'])
-                technician_login.LOGOUT_DATETIME = timezone.now()
-                technician_login.save()
-                request.session.flush()
-                return JsonResponse({"message": "logout successful"}, status=200)
+            login_type = request.POST.get('TYPE')
+            if login_type=="technician":
+                if TechnicianLogin.objects.filter(SESSION_ID=request.session['SESSION_ID']).exists():
+                    technician_login = TechnicianLogin.objects.get(SESSION_ID=request.session['SESSION_ID'])
+                    technician_login.LOGOUT_DATETIME = timezone.now()
+                    technician_login.save()
+                    request.session.flush()
+                    return JsonResponse({"message": "logout successful"}, status=200)
+            elif login_type=="radiologist":
+                if RadiologistLogin.objects.filter(SESSION_ID=request.session['SESSION_ID']).exists():
+                    radiologist_login = RadiologistLogin.objects.get(SESSION_ID=request.session['SESSION_ID'])
+                    radiologist_login.LOGOUT_DATETIME = timezone.now()
+                    radiologist_login.save()
+                    request.session.flush()
+                    return JsonResponse({"message": "logout successful"}, status=200)
+            elif login_type=="super":
+                if SuperLogin.objects.filter(SESSION_ID=request.session['SESSION_ID']).exists():
+                    super_login = SuperLogin.objects.get(SESSION_ID=request.session['SESSION_ID'])
+                    super_login.LOGOUT_DATETIME = timezone.now()
+                    super_login.save()
+                    request.session.flush()
+                    return JsonResponse({"message": "logout successful"}, status=200)
 
         except Exception as error:
 
@@ -163,8 +243,21 @@ class BasePage(APIView):
 
             return HttpResponseRedirect(reverse_lazy('login'))
 
+class ApproveTechnician(APIView):
+    def post(self,request,id):
+        technician = Technician.objects.get(id=id)
+        technician.IS_APPROVED=True
+        approvedtech = technician.save()
+        priority_list= Priority.objects.all()
+        for i in range(len(priority_list)):
+           TechnicianPriority.objects.create(PRIORITY=priority_list[i],TECHNICIAN=technician,TECHNICIAN_PRICE=request.data['TECHNICIAN_PRICE'])
+
 class DashboardPage(TemplateView):
     template_name='index.html'
     
 class LoginPage(TemplateView):
     template_name='auth_login.html'
+
+class TechnicianRegisterPage(TemplateView):
+    template_name='register.html'
+

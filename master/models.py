@@ -12,6 +12,8 @@ class ReportStatus(models.Model):
 
 class Priority(models.Model):
     PRIORITY = models.CharField(max_length=55)
+    DURATION = models.CharField(max_length=255)
+    RATE = models.CharField(max_length=255)
     CREATED_AT = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -24,3 +26,24 @@ class TicketStatus(models.Model):
 
     def __str__(self):
         return self.STATUS
+
+class BodyPart(models.Model):
+    NAME = models.CharField(max_length=255)
+    CREATED_AT = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.NAME
+    
+    class Meta:
+        verbose_name_plural='Body Parts'
+    
+
+class BodyPartView(models.Model):
+    VIEWS_SIDE = models.CharField(max_length=255)
+    CREATED_AT = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.VIEWS_SIDE
+
+    class Meta:
+        verbose_name_plural='Body Parts Views'
