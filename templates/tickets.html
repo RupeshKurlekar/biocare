@@ -1,0 +1,379 @@
+{% include 'header.html' %}
+    <body class="hold-transition light-skin sidebar-mini theme-primary">
+	    <div class="wrapper">
+            {% include 'navbar.html' %}
+            {% include 'sidebar.html' %}
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+            	    <div class="container-full">
+                        <!-- Content Header (Page header) -->
+                        <div class="content-header">
+                            <div class="d-flex align-items-center">
+                                <div class="mr-auto">
+                                    <div class="d-inline-block align-items-center">
+                                        <nav>
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item">
+                                                    <a href="index.php">
+                                                        <i class="mdi mdi-home-outline"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="breadcrumb-item active" aria-current="page">
+                                                    <a href="javascript:void(0);">
+                                                        Ticket List
+                                                    </a>
+                                                </li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="row">
+
+                                <div class="col-12">
+
+                                    <div class="box">
+                                        <div class="box-header with-border flexbox">
+                                            <h3 class="box-title">
+                                                Ticket List
+                                            </h3>
+                                            <div class="text-right flex-grow">
+                                                <button class="btn btn-primary" data-toggle="modal" data-target="#raiseTicketModal">Raise Ticket</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <ul class="nav nav-tabs nav-fill" role="tablist">
+                                                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#raised_tkt_list" role="tab"><span><i class="mdi mdi-human-greeting"></i></span> <span class="hidden-xs-down ml-15">Raised</span></a> </li>
+                                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#accpt_tkt_list" role="tab"><span><i class="mdi mdi-check"></i></span> <span class="hidden-xs-down ml-15">Accepted</span></a> </li>
+                                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#ong_tkt_list" role="tab"><span><i class="mdi mdi-search-web"></i></span> <span class="hidden-xs-down ml-15">Ongoing</span></a> </li>
+                                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#comp_tkt_list" role="tab"><span><i class="mdi mdi-check-all"></i></span> <span class="hidden-xs-down ml-15">Completed</span></a> </li>
+                                            </ul>
+                                            <div class="tab-content tabcontent-border">
+                                                <div class="tab-pane active" id="raised_tkt_list" role="tabpanel">
+                                                    <div class="p-15">
+                                                        <div class="table-responsive">
+                                                            <table class="data_tbl table table-bordered table-striped" style="width:100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>ID</th>
+                                                                        <th>Report ID</th>
+                                                                        <th width="20%">Report Name</th>
+                                                                        <th>Patient Name</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>#TKT_1</td>
+                                                                        <td>#RPT_1</td>
+                                                                        <td>X-RAY CHEST PA VIEW</td>
+                                                                        <td>Pawan Kumar</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>2</td>
+                                                                        <td>#TKT_2</td>
+                                                                        <td>#RPT_2</td>
+                                                                        <td>X-RAY CERVICAL SPINE AP</td>
+                                                                        <td>Kiran Shah</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>ID</th>
+                                                                        <th>Report ID</th>
+                                                                        <th width="20%">Report Name</th>
+                                                                        <th>Patient Name</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="accpt_tkt_list" role="tabpanel">
+                                                    <div class="p-15">
+                                                        <div class="table-responsive">
+                                                            <table class="data_tbl table table-bordered table-striped" style="width:100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>ID</th>
+                                                                        <th>Report ID</th>
+                                                                        <th width="20%">Report Name</th>
+                                                                        <th>Patient Name</th>
+                                                                        <th>Radiologist</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>#TKT_1</td>
+                                                                        <td>#RPT_1</td>
+                                                                        <td>X-RAY CHEST PA VIEW</td>
+                                                                        <td>Pawan Kumar</td>
+                                                                        <td>Dr. Ketan Sanghvi</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>2</td>
+                                                                        <td>#TKT_2</td>
+                                                                        <td>#RPT_2</td>
+                                                                        <td>X-RAY CERVICAL SPINE AP</td>
+                                                                        <td>Kiran Shah</td>
+                                                                        <td>Dr. Tejas Sharma</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>ID</th>
+                                                                        <th>Report ID</th>
+                                                                        <th width="20%">Report Name</th>
+                                                                        <th>Patient Name</th>
+                                                                        <th>Radiologist</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="ong_tkt_list" role="tabpanel">
+                                                    <div class="p-15">
+                                                        <div class="table-responsive">
+                                                            <table class="data_tbl table table-bordered table-striped" style="width:100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>ID</th>
+                                                                        <th>Report ID</th>
+                                                                        <th width="20%">Report Name</th>
+                                                                        <th>Patient Name</th>
+                                                                        <th>Radiologist</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>#TKT_1</td>
+                                                                        <td>#RPT_1</td>
+                                                                        <td>X-RAY CHEST PA VIEW</td>
+                                                                        <td>Pawan Kumar</td>
+                                                                        <td>Dr. Ketan Sanghvi</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>2</td>
+                                                                        <td>#TKT_2</td>
+                                                                        <td>#RPT_2</td>
+                                                                        <td>X-RAY CERVICAL SPINE AP</td>
+                                                                        <td>Kiran Shah</td>
+                                                                        <td>Dr. Tejas Sharma</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>ID</th>
+                                                                        <th>Report ID</th>
+                                                                        <th width="20%">Report Name</th>
+                                                                        <th>Patient Name</th>
+                                                                        <th>Radiologist</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="comp_tkt_list" role="tabpanel">
+                                                    <div class="p-15">
+                                                        <div class="table-responsive">
+                                                            <table class="data_tbl table table-bordered table-striped" style="width:100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>ID</th>
+                                                                        <th>Report ID</th>
+                                                                        <th width="20%">Report Name</th>
+                                                                        <th>Patient Name</th>
+                                                                        <th>Radiologist</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>#TKT_1</td>
+                                                                        <td>#RPT_1</td>
+                                                                        <td>X-RAY CHEST PA VIEW</td>
+                                                                        <td>Pawan Kumar</td>
+                                                                        <td>Dr. Ketan Sanghvi</td>
+                                                                        <td>
+                                                                            <a href="view_radiologist_tkt_report.php" ><button class="btn btn-sm btn-warning" data-toggle="tooltip" data-original-title="View Report"><i class="fa fa-eye"></i>&nbsp;View Report</button></a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>2</td>
+                                                                        <td>#TKT_2</td>
+                                                                        <td>#RPT_2</td>
+                                                                        <td>X-RAY CERVICAL SPINE AP</td>
+                                                                        <td>Kiran Shah</td>
+                                                                        <td>Dr. Tejas Sharma</td>
+                                                                        <td>
+                                                                            <a href="view_radiologist_tkt_report.php" ><button class="btn btn-sm btn-warning" data-toggle="tooltip" data-original-title="View Report"><i class="fa fa-eye"></i>&nbsp;View Report</button></a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>ID</th>
+                                                                        <th>Report ID</th>
+                                                                        <th width="20%">Report Name</th>
+                                                                        <th>Patient Name</th>
+                                                                        <th>Radiologist</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </section>
+                        <!-- /.content -->
+                        
+                        <div id="raiseTicketModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <form action="" method="POST" >
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Raise Ticket</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Patient <small class="text-danger">*</small></label>
+                                                        <select class="form-control select2" style="width: 100%;" >
+                                                            <option value="">Select</option>
+                                                            <option value="1">Pawan Kumar</option>
+                                                            <option value="2">Kiran Shah</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Report <small class="text-danger">*</small></label>
+                                                        <select class="form-control select2" id="report_drop" style="width: 100%;" >
+                                                            <option value="">Select</option>
+                                                            <option value="1">#RPT_1 (X-RAY CHEST PA VIEW)</option>
+                                                            <option value="2">#RPT_2 (X-RAY CERVICAL SPINE AP)</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12" id="rd_div">
+                                                    <div class="form-group">
+                                                        <label>Radiologist: </label>
+                                                        <label class="ml-5" id="rd_1">Dr. Ketan Sanghvi</label>
+                                                        <label class="ml-5" id="rd_2">Dr. Tejas Sharma</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Remark: </label>
+                                                        <textarea rows="5" class="form-control" placeholder=""></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer text-right" style="width: 100%;">
+                                            <button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>
+                                            <button type="submit" name="submit" class="btn btn-success text-left">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+
+            	    </div>
+                </div>
+                 <!-- /.content-wrapper -->
+            {% include 'footer.html' %}
+
+             <!-- Control Sidebar -->
+            
+             <!-- /.control-sidebar -->
+
+             <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+  
+        </div>
+        <!-- ./wrapper -->	 
+	
+        <!-- Vendor JS -->
+        {% include 'script.html' %}
+
+        <script type="text/javascript">
+            
+            $(document).ready(function(){
+
+                $('#report_drop').on('change', function(){
+
+                    var reportVal = $(this).val();
+
+                    if(reportVal!="")
+                    {
+                        $('#rd_div').show();
+
+                        if(reportVal==1)
+                        {
+                            $('#rd_1').show();
+                            $('#rd_2').hide();
+                        }
+                        else if(reportVal==2)
+                        {
+                            $('#rd_1').hide();
+                            $('#rd_2').show();
+                        }
+                        else
+                        {
+                            $('#rd_1').hide();
+                            $('#rd_2').hide();
+                        }
+                    }
+                    else
+                    {
+                        $('#rd_div').hide();
+                        $('#rd_1').hide();
+                        $('#rd_2').hide();
+                    }
+
+                });
+
+                $('#rd_div').hide();
+                $('#rd_1').hide();
+                $('#rd_2').hide();
+            });
+
+        </script>
+	
+    </body>
+</html>

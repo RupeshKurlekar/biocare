@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" hrefiews="../static/images/favicon.ico">
+    
+        <title>Biocare - Technician Panel</title>
+      
+    	<!-- Vendors Style-->
+    	<link rel="stylesheet" href="../static/assets/css/vendors_css.css">
+    	  
+    	<!-- Style-->  
+    	<link rel="stylesheet" href="../static/assets/css/style.css">
+    	<link rel="stylesheet" href="../static/assets/css/skin_color.css">	
+    	<link rel="stylesheet" href="../static/assets/css/login.css">
+    	<link rel="stylesheet" href="../static/assets/css/toastr.css">
+    </head>
+    <body class="bg-dark">
+        <div id="app">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col col-sm-12 col-md-5  p-0 left-panel">
+                        <main class="py-4 login-info">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-9">
+                                        <div class="card">
+                                            <div class="card-header text-center">
+                                                <img class="img-fluid" src="../static/images/biocare_logo.jpeg" alt="" style="margin:0 auto; width:230px;">
+                                            </div>
+                                            <div class="card-body">
+                                                <h4 style="color:black;">Login</h4>
+                                                <form action="" method="post">
+                                                    <div class="form-group row">
+                                                        <label for="username" class="col-sm-12 col-form-label text-md-left">Username</label>
+                                                        <div class="col-md-12">
+                                                            <input id="mob_no" type="text" class="form-control" name="Username" value="" placeholder="Enter your primary mobile no" required="" autofocus="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="password" class="col-md-12 col-form-label text-md-left">Password</label>
+                                                        <div class="col-md-12">
+                                                            <input id="password" type="password" class="form-control" name="Password" placeholder="Enter your password" required="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row mb-0">
+                                                        <div class="col-md-6">
+                                                            <!-- 
+                                                            <button type="submit" name="submit" class="btn btn-primary" style="background:#a6ce39;">
+                                                                <i class="ion-log-in"></i> Login
+                                                            </button> 
+                                                            -->
+                                                          
+                                                                <button type="button" class="btn btn-primary" style="background:#a6ce39;" onclick="login()">
+                                                                    <i class="ion-log-in"></i> Login
+                                                                </button>
+                                                     
+                                                        </div>
+                                                        <div class="col-md-6 text-right">
+                                                            <a href="register.html">
+                                                                <button type="button" class="btn btn-primary" style="background:#a6ce39;">
+                                                                    <i class="fa fa-user-circle"></i> Register
+                                                                </button>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+                    <div class="col col-sm-12 col-md-7  p-0 right-panel">
+                        <div class="slider">
+                            <div class="slide1"></div>
+                            <div class="slide2"></div>
+                            <div class="slide3"></div>
+                        </div>
+                        <div class="right-info">
+                            <h2 class="text-center">Biocare - Technician Panel</h2>                            
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        {% include 'script.html'%}
+
+        <script src="../static/js/auth/auth.js"></script>
+    </body>
+</html>

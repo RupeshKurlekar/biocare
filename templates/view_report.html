@@ -1,0 +1,167 @@
+{% include 'header.html' %}
+    <body class="hold-transition light-skin sidebar-mini theme-primary">
+	    <div class="wrapper">
+            {% include 'navbar.html' %}
+            {% include 'sidebar.html' %}
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+            	    <div class="container-full">
+                        <!-- Content Header (Page header) -->
+                        <div class="content-header">
+                            <div class="d-flex align-items-center">
+                                <div class="mr-auto">
+                                    <div class="d-inline-block align-items-center">
+                                        <nav>
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item">
+                                                    <a href="index.php">
+                                                        <i class="mdi mdi-home-outline"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="breadcrumb-item" aria-current="page">
+                                                    <a href="reports.php">
+                                                        Reports
+                                                    </a>
+                                                </li>
+                                                <li class="breadcrumb-item active" aria-current="page">
+                                                    <a href="javascript:void(0);">
+                                                        Report Details
+                                                    </a>
+                                                </li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="row">
+
+                                <div class="col-12">
+
+                                    <div class="box">
+                                        <div class="box-header with-border flexbox">
+                                            <h3 class="box-title">
+                                                Report Details
+                                            </h3>
+                                            <div class="text-right flex-grow">
+                                                <a href="reports.php">
+                                                    <button type="button" class="btn btn-dark">Back</button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-md-3">Report ID: </label>
+                                                        <label class="font-weight-bold col-lg-9 col-md-9">#RPT_3</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-md-3">Report Date: </label>
+                                                        <label class="font-weight-bold col-lg-9 col-md-9">04th Apr 2021</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-md-3">Patient: </label>
+                                                        <label class="font-weight-bold col-lg-9 col-md-9">Pawan Kumar</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-md-3">Priority: </label>
+                                                        <label class="font-weight-bold col-lg-9 col-md-9">High</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label>Report Document: </label>
+                                                                <a href="../uploads/report1.pdf" download="download">
+                                                                    <button type="button" class="btn btn-sm btn-warning">
+                                                                        <i class="fa fa-download"></i> Download File 1
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-lg-3" >
+                                                            <label>Body Part: </label>
+                                                            <label class="ml-5">Dorsal Spine</label>
+                                                        </div>
+                                                        <div class="col-md-3 col-lg-3" >
+                                                            <label>View: </label>
+                                                            <label class="ml-5">AP OBLIQUE</label>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label>Report Document: </label>
+                                                                <a href="../uploads/report1.pdf" download="download">
+                                                                    <button type="button" class="btn btn-sm btn-warning">
+                                                                        <i class="fa fa-download"></i> Download File 2
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-lg-3" >
+                                                            <label>Body Part: </label>
+                                                            <label class="ml-5">Left Chest</label>
+                                                        </div>
+                                                        <div class="col-md-3 col-lg-3" >
+                                                            <label>View: </label>
+                                                            <label class="ml-5">PA, LATERAL</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10 col-lg-10">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-2 col-md-2">Remark: </label>
+                                                        <label class="font-weight-bold col-lg-10 col-md-10">No significant abnormality</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                        <div class="box-footer text-right">
+                                            <a href="reports.php">
+                                                <button type="button" class="btn btn-dark">Back</button>
+                                            </a>
+                                        </div>
+                                        <!-- /.box-footer -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </section>
+                        <!-- /.content -->
+
+            	    </div>
+                </div>
+                 <!-- /.content-wrapper -->
+            {% include 'footer.html' %}
+
+             <!-- Control Sidebar -->
+            
+             <!-- /.control-sidebar -->
+
+             <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+  
+        </div>
+        <!-- ./wrapper -->	 
+	
+        <!-- Vendor JS -->
+        {% include 'script.html' %}
+	
+    </body>
+</html>

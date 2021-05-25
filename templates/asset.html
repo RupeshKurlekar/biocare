@@ -1,0 +1,211 @@
+<?php
+error_reporting(0);
+ include '../Admin_config/connection.php';
+ include 'header.php';
+ include '../Admin_controllers/sector_controller.php';
+ include '../Admin_modules/sector_model.php';
+ if(!isset($_SESSION['details']['mobile_number']))
+ {
+     ?>
+     <script>
+        window.location.href="auth_login.php";
+     </script>
+     <?php
+    }
+?>
+<body class="hold-transition light-skin sidebar-mini theme-primary">
+	    <div class="wrapper">
+            {% include 'navbar.html' %}
+            {% include 'sidebar.html' %}
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+            	  <div class="container-full">
+            		<!-- Main content -->
+            		<section class="content">
+            		    <div class="row">
+            		        <div class="col-lg-6">
+            		            <a href="index.php"><i class="fa fa-home mr-0 font-size-20 mb-5 mt-15 ml-5"></i></a> - Asset
+            		        </div>
+            		        <div class="col-lg-6">
+            		        	<button type="button" class="waves-effect waves-light btn btn-jsw  mb-5 v mt-10 float-right" data-toggle="modal" data-target="#editservice"><i class="fa fa-plus"></i> Add Asset</button>
+            		        </div>
+            		    </div>            		    
+            		
+            			<div class="modal fade" id="editservice">
+                    	  <div class="modal-dialog" role="document">
+                    		<div class="modal-content">
+                    		  <div class="modal-header">
+                    			<h4 class="modal-title">Add Asset</h4>
+                    			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    			  <span aria-hidden="true">&times;</span></button>
+                    		  </div>
+                    		  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
+                    		  <div class="modal-body">
+    							<div class="form-group">
+    							  <label>Sector</label>
+    							  <select class="form-control select2" style="width: 100%" name="sector" required >
+    							     <option value="">Select Sector</option>
+    							    <?php foreach($fetch_sector as $key => $svalue) { ?>
+    								<option value="<?php echo $svalue['id'];?>"><?php echo $svalue['name'];?></option>
+    								<?php } ?>
+    							  </select>
+    							 </div>                    		      
+                                <div class="form-group">
+								    <label>Asset Name</label>
+								    <input type="text" id="service" name="asset_name" class="form-control" placeholder="Enter Asset Name" value="" required>
+								</div>	
+                                </div>								
+                    		  <!--</div>-->
+                    		  <div class="text-center" style="margin-bottom:20px;">
+								<button type="submit" name="add_asset" class="btn btn-rounded btn-jsw btn-outline">
+								  <i class="ti-save-alt"></i> Save
+								</button>
+							  </div>
+                            </form>
+                    		</div>
+                    		<!-- /.modal-content -->
+                    	  </div>
+                    	  <!-- /.modal-dialog -->
+                      </div>
+            			<div class="row mt-15">
+            			<div class="col-12">
+            
+            			 <div class="box">
+            				<div class="box-header with-border">
+            				  <h4 class="box-title">Asset</h4>
+            				</div>
+            				<!-- /.box-header -->
+            				<div class="box-body">
+            					<div class="table-responsive">
+            					  <table id="example1" class="table table-bordered table-striped">
+            						<thead>
+            							<tr>
+            							    <th>Sr. No.</th>
+            							    <th>Sector</th>
+            								<th>Asset</th>
+            								<th class="v">Action</th>
+            							</tr>
+            						</thead>
+            						<?php 
+            						    $i=1;
+            						    foreach($fetch_asset as $key => $avalue)
+            						    {
+            						    ?>
+            							<tr>
+            								<td><?php echo  $i++; ?></td>
+            								<td><?php echo $avalue['sector'] ?></td>
+            								<td><?php echo $avalue['asset']; ?></td>
+            								<td class="v">
+            								    
+            								   <button type="button"  class="waves-effect waves-light btn btn-success  mb-5"data-toggle="modal" data-target="#editasset<?php echo $i; ?>" ><i class="fa fa-edit"></i> Edit</button>
+
+                                                <button class="waves-effect waves-light btn btn-danger delete_asset mb-5"  data-toggle="tooltip" title="" data-original-title="Delete" id="<?php echo $avalue['id']; ?>"><i class="fa fa-archive"></i> Delete</button>
+                                            </td>
+            							</tr>
+            							 <div class="modal fade" id="editasset<?php echo $i; ?>">
+                                    	  <div class="modal-dialog" role="document">
+                                     		<div class="modal-content">
+                                    		  <div class="modal-header">
+                                    			<h4 class="modal-title">Edit Asset</h4>
+                                    			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    			  <span aria-hidden="true">&times;</span></button>
+                                    		  </div>
+                                    		  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
+                                    		  <div class="modal-body">
+                                    		      <input type="hidden" id="assetIid" name="assetid" class="form-control"  value="<?php echo $avalue['id']; ?>" required>
+                    							<div class="form-group">
+                    							  <label>Sector</label>
+                    							  <select class="form-control select2" style="width: 100%" name="sector" required >
+                    							    <?php foreach($fetch_sector as $key => $svalue) { ?>
+                    								<option value="<?php echo $svalue['id'];?>" <?php if($svalue['id']==$avalue['sector_id']) { echo "selected";} ?>><?php echo $svalue['name'];?></option>
+                    								<?php } ?>
+                    							  </select>
+                    							 </div>                                    		      
+                                                <div class="form-group">
+                								    <label>Asset Name</label>
+                								    <input type="text" id="asset_name" name="asset_name" class="form-control" placeholder="Asset Name" value="<?php echo $avalue['asset']; ?>" required>
+                								</div>	
+								
+                                    		  </div>
+                                    		  <div class="text-center" style="margin-bottom:20px;">
+                								<button type="submit" name="edit_asset" class="btn btn-rounded btn-jsw btn-outline">
+                								  <i class="ti-save-alt"></i> Save
+                								</button>
+                							  </div>
+                                            </form>
+                                    		</div>
+                                    		<!-- /.modal-content -->
+                                    	  </div>
+                                    	  <!-- /.modal-dialog -->
+                                      </div>
+            							<?php 
+            						    } ?>
+            
+            
+            					  </table>
+            				
+            					</div>
+            				</div>
+            				<!-- /.box-body -->
+            			  </div>
+            			  <!-- /.box -->
+                   
+            			</div>
+            			</div>
+            		</section>
+            		<!-- /.content -->
+            	  </div>
+              </div>
+                 <!-- /.content-wrapper -->
+                {% include 'footer.html' %}
+
+                 <!-- Control Sidebar -->
+                
+                 <!-- /.control-sidebar -->
+  
+                 <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+                 <div class="control-sidebar-bg"></div>
+  
+        </div>
+        <!-- ./wrapper -->	 
+	
+        <!-- Vendor JS -->
+        {% include 'script.html' %}
+<script>
+    $("#service").on('keyup', function(e) {
+    var val = $(this).val();
+    if (val.match(/[^a-zA-Z\s]/g)) {
+       $(this).val(val.replace(/[^a-zA-Z\s]/g, ''));
+   }
+    });
+</script>
+
+
+
+<script>
+    $(document).ready(function(){
+    $('.delete_asset').on('click', function(){
+var assetid = $(this).attr('id');
+
+swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this DATA!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+   window.location = "<?php echo ($_SERVER['PHP_SELF']); ?>?assetid="+assetid+"&&url=<?php echo $_SERVER['PHP_SELF']; ?>";
+    
+  } else {
+    swal("Your data is safe!");
+  }
+});
+});
+});
+
+</script>
+ 
+    </body>
+</html>
