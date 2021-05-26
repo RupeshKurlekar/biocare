@@ -1,0 +1,162 @@
+ <?php
+    // error_reporting(0);
+    include '../Admin_config/connection.php';
+    include 'header.php'; 
+    include '../Admin_controllers/dashboard_controller.php';
+    include '../Admin_modules/dashboard_model.php';
+ if(!isset($_SESSION['details']['mobile_number']))
+ {
+     ?>
+     <script>
+         window.location.href="auth_login.php";
+     </script>
+     <?php
+ }
+
+ ?>
+<style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+   #map { width: 100%; height: 900px; border: 0px; padding: 0px; }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
+  <body class="hold-transition light-skin sidebar-mini theme-primary" onload="initMap()" style="margin:0px; border:0px; padding:0px;">
+    {% include 'navbar.html' %}
+    {% include 'sidebar.html' %}
+    <div class="content-wrapper">
+    <div class="container-full">
+            		<!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-6">
+            </div>
+            <div class="col-lg-6">
+       <div class="card" style="position: absolute;width: 58%;margin-top: 10%;    margin-left: 29%;z-index: 9;">
+           <div class="card-body">
+               <form   method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data" class="form" >
+				<div class="form-group">
+					  <label>Location</label>
+					  <select class="form-control select2" style="width: 100%" name="location" >
+					    <option value=''>Select Location</option>
+					    <?php foreach($fetch_location as $key => $lvalue) { ?>
+						<option value="<?php echo $lvalue['id'];?>" <?php if($lvalue['id']==$_COOKIE['location']) ?>><?php echo $lvalue['name'];?></option>
+						<?php } ?>
+					  </select>
+					</div>                   
+				<div class="form-group">
+					  <label>Manager</label>
+					  <select class="form-control select2" style="width: 100%" name="manager" >
+					    <option value=''>Select Manager</option>
+					    <?php foreach($fetch_manager as $key => $mvalue) { ?>
+						<option value="<?php echo $mvalue['id'];?>" <?php if($mvalue['id']==$_COOKIE['location']) ?>><?php echo $mvalue['name'];?></option>
+						<?php } ?>
+					  </select>
+					</div>
+				  <div class="form-group">
+					  <label>From Date</label>
+					  <input type="date" id="f_date" name="f_date" class="form-control" placeholder="First Name" value="" >
+					</div>
+				  <div class="form-group">
+					  <label>To Date</label>
+					  <input type="date" id="t_date" name="t_date" class="form-control" placeholder="First Name" value="" >
+					</div>
+					<div style="text-align:center;">
+					<button type="submit" name="surch_report" class="btn btn-rounded btn-jsw btn-outline" >
+					   Surch
+					</button>
+					</div>
+					</form>
+		</div>
+		</div> 
+       </div> 
+       </div>
+    <div id="map"></div>
+   <script src="http://maps.google.com/maps/api/js?key=AIzaSyDrVg5Z8PsNiK9pGYP2U-nBB9030UF-jbE&callback=initMap&sensor=false" type="text/javascript"></script>
+        <script type="text/javascript">
+            //Sample code written by August Li
+            var icon = new google.maps.MarkerImage("http://maps.google.com/mapfiles/ms/micons/blue.png",
+                       new google.maps.Size(32, 32), new google.maps.Point(0, 0),
+                       new google.maps.Point(16, 32));
+            var center = null;
+            var map = null;
+            var currentPopup;
+            var bounds = new google.maps.LatLngBounds();
+            function addMarker(lat, lng, info) {
+                var pt = new google.maps.LatLng(lat, lng);
+                bounds.extend(pt);
+                var marker = new google.maps.Marker({
+                    position: pt,
+                    icon: icon,
+                    map: map
+                });
+                var popup = new google.maps.InfoWindow({
+                    content: info,
+                    maxWidth: 300
+                });
+                google.maps.event.addListener(marker, "click", function() {
+                    if (currentPopup != null) {
+                        currentPopup.close();
+                        currentPopup = null;
+                    }
+                    popup.open(map, marker);
+                    currentPopup = popup;
+                });
+                google.maps.event.addListener(popup, "closeclick", function() {
+                    map.panTo(center);
+                    currentPopup = null;
+                });
+            }           
+            function initMap() {
+                map = new google.maps.Map(document.getElementById("map"), {
+                    center: new google.maps.LatLng(20.5937, 78.9629),
+                    zoom: 10,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    mapTypeControl: true,
+                    mapTypeControlOptions: {
+                        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
+                    },
+                    navigationControl: true,
+                    navigationControlOptions: {
+                        style: google.maps.NavigationControlStyle.ZOOM_PAN
+                    }
+                });
+            // addMarker(28.7041, 77.1025, '<b>powai</b><br />powai');
+            <?php
+            if(!empty($FETCH_GEO_TAGGING_MAP))
+            {
+            foreach($FETCH_GEO_TAGGING_MAP as $key => $value)
+            {
+              $name = $value['name'];
+              $lat = $value['latitude'];
+              $lon = $value['longitude'];
+              $desc = $value['desc'];
+            
+            
+            
+              echo("addMarker($lat, $lon, '<b>$name</b><br />powai');\n");    
+             }
+             }
+             else
+             {
+                   addMarker(20.5937, 78.9629, '<b>Inida</b><br />Inida');
+             }
+             ?>
+ center = bounds.getCenter();
+     map.fitBounds(bounds);
+
+     }
+     </script>
+    <!--<script async-->
+    <!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrVg5Z8PsNiK9pGYP2U-nBB9030UF-jbE&callback=initMap">-->
+    <!--</script>-->
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

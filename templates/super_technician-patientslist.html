@@ -1,0 +1,289 @@
+{% include 'header.html' %}
+    <body class="hold-transition light-skin sidebar-mini theme-primary">
+	    <div class="wrapper">
+            {% include 'navbar.html' %}
+            {% include 'sidebar.html' %}
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+            	    <div class="container-full">
+                        <!-- Content Header (Page header) -->
+                        <div class="content-header">
+                            <div class="d-flex align-items-center">
+                                <div class="mr-auto">
+                                    <div class="d-inline-block align-items-center">
+                                        <nav>
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item">
+                                                    <a href="index.php">
+                                                        <i class="mdi mdi-home-outline"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="breadcrumb-item active" aria-current="page">
+                                                    <a href="javascript:void(0);">
+                                                        Technician  -  Patients
+                                                    </a>
+                                                </li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="row">
+
+                                <div class="col-12">
+
+                                    <div class="box">
+                                        <div class="box-header with-border flexbox">
+                                            <h3 class="box-title">
+                                                Patient List
+                                            </h3>
+                                            <!-- <div class="text-right flex-grow">
+                                                <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Patient</button>
+                                            </div> -->
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <div class="table-responsive">
+                                                <table class="data_tbl table table-bordered table-striped" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Sr. No.</th>
+                                                            <th>ID</th>
+                                                            <th>Name</th>
+                                                            <th>Age</th>
+                                                            <th>Gender</th>
+                                                            <th width="20%">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>#PT_1</td>
+                                                            <td>Pawan Kumar</td>
+                                                            <td>31</td>
+                                                            <td>Male</td>
+                                                            <td>
+                                                                <!-- <a href="javascript:void(0);" data-toggle="modal" data-target=".editModal"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</button></a> -->
+                                                                <a href="javascript:void(0);" data-toggle="modal" data-target=".viewModal"><button class="btn btn-sm btn-warning" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i>&nbsp;View</button></a>
+                                                                <button class="btn btn-sm btn-danger delRow" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>#PT_2</td>
+                                                            <td>Kiran Shah</td>
+                                                            <td>35</td>
+                                                            <td>Male</td>
+                                                            <td>
+                                                                <!-- <a href="javascript:void(0);" data-toggle="modal" data-target=".editModal"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</button></a> -->
+                                                                <a href="javascript:void(0);" data-toggle="modal" data-target=".viewModal"><button class="btn btn-sm btn-warning" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i>&nbsp;View</button></a>
+                                                                <button class="btn btn-sm btn-danger delRow" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Sr. No.</th>
+                                                            <th>ID</th>
+                                                            <th>Name</th>
+                                                            <th>Age</th>
+                                                            <th>Gender</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </section>
+                        <!-- /.content -->
+                        
+                        <div id="addModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="" method="POST" >
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Add Patient</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Name <small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Patient Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Gender <small class="text-danger">*</small></label>
+                                                        <select class="form-control select2" style="width: 100%;" >
+                                                            <option value="">Select</option>
+                                                            <option value="male">Male</option>
+                                                            <option value="female">Female</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Age <small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Patient Age">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Phone Number <small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Patient Phone Number">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer text-right" style="width: 100%;">
+                                            <button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>
+                                            <button type="submit" name="submit" class="btn btn-success text-left">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+
+                        <div class="modal fade editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="" method="POST" >
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Edit Patient</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Name <small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Patient Name" value="Pawan Kumar">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Gender <small class="text-danger">*</small></label>
+                                                        <select class="form-control select2" style="width: 100%;" >
+                                                            <option value="">Select</option>
+                                                            <option value="male" selected="selected">Male</option>
+                                                            <option value="female">Female</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Age <small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Patient Age" value="31">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Phone Number <small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Patient Phone Number" value="9876543210">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer text-right" style="width: 100%;">
+                                            <button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>
+                                            <button type="submit" name="submit" class="btn btn-success text-left">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+
+                        <div class="modal fade viewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <form action="" method="POST" >
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Patient Details</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">ID: </label>
+                                                        <label>#PT_1</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Name: </label>
+                                                        <label>Pawan Kumar</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Gender: </label>
+                                                        <label>Male</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Age: </label>
+                                                        <label>31</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Phone Number: </label>
+                                                        <label>9876543210</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer text-right" style="width: 100%;">
+                                            <button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                      <!-- /.modal -->
+
+            	    </div>
+                </div>
+                 <!-- /.content-wrapper -->
+            {% include 'footer.html' %}
+
+             <!-- Control Sidebar -->
+            
+             <!-- /.control-sidebar -->
+
+             <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+  
+        </div>
+        <!-- ./wrapper -->	 
+	
+        <!-- Vendor JS -->
+        {% include 'script.html' %}
+	
+    </body>
+</html>

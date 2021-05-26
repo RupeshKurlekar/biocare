@@ -1,26 +1,25 @@
-
+<?php
+error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-      {% load static %}
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="icon" hrefiews="../static/images/favicon.ico">
+        <link rel="icon" hrefiews="../images/favicon.ico">
     
-        <title>Biocare - Technician Panel</title>
+        <title>Biocare - Super Admin</title>
       
     	<!-- Vendors Style-->
-        <link rel="stylesheet" href="{% static 'assets/css/vendors_css.css' %}">
+    	<link rel="stylesheet" href="css/vendors_css.css">
     	  
     	<!-- Style-->  
-        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/css/skin_color.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/css/login.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/css/toastr.css' %}">
+    	<link rel="stylesheet" href="css/style.css">
+    	<link rel="stylesheet" href="css/skin_color.css">	
+    	<link rel="stylesheet" href="css/login.css">
     </head>
     <body class="bg-dark">
         <div id="app">
@@ -33,7 +32,7 @@
                                     <div class="col-md-9">
                                         <div class="card">
                                             <div class="card-header text-center">
-                                                <img class="img-fluid" src="../static/images/biocare_logo.jpeg" alt="" style="margin:0 auto; width:230px;">
+                                                <img class="img-fluid" src="../images/biocare_logo.jpeg" alt="" style="margin:0 auto; width:230px;">
                                             </div>
                                             <div class="card-body">
                                                 <h4 style="color:black;">Login</h4>
@@ -41,7 +40,7 @@
                                                     <div class="form-group row">
                                                         <label for="username" class="col-sm-12 col-form-label text-md-left">Username</label>
                                                         <div class="col-md-12">
-                                                            <input id="mob_no" type="text" class="form-control" name="Username" value="" placeholder="Enter your primary mobile no" required="" autofocus="">
+                                                            <input id="username" type="text" class="form-control" name="Username" value="" placeholder="Enter your primary mobile no" required="" autofocus="">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
@@ -57,14 +56,14 @@
                                                                 <i class="ion-log-in"></i> Login
                                                             </button> 
                                                             -->
-                                                          
-                                                                <button type="button" class="btn btn-primary" style="background:#a6ce39;" onclick="login()">
+                                                            <a href="index.php">
+                                                                <button type="button" class="btn btn-primary" style="background:#a6ce39;">
                                                                     <i class="ion-log-in"></i> Login
                                                                 </button>
-                                                     
+                                                            </a>
                                                         </div>
                                                         <div class="col-md-6 text-right">
-                                                            <a href="/technician/register">
+                                                            <a href="register.php">
                                                                 <button type="button" class="btn btn-primary" style="background:#a6ce39;">
                                                                     <i class="fa fa-user-circle"></i> Register
                                                                 </button>
@@ -86,14 +85,11 @@
                             <div class="slide3"></div>
                         </div>
                         <div class="right-info">
-                            <h2 class="text-center">Biocare - Technician Panel</h2>                            
+                            <h2 class="text-center">Biocare - Super Admin</h2>                            
                         </div>
                     </div>
                 </div>
             </div>            
         </div>
-        {% include 'script.html'%}
-        <script src="{% static 'js/auth/auth.js' %}" ></script>
-
     </body>
 </html>

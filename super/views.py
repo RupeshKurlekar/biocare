@@ -101,7 +101,37 @@ class BasePage(APIView):
             return HttpResponseRedirect(reverse_lazy('login'))
 
 class DashboardPage(TemplateView):
-    template_name='index.html'
+    template_name='super_index.html'
     
 class LoginPage(TemplateView):
     template_name='auth_login.html'
+
+class TechnicianApprovalPage(TemplateView):
+    template_name= 'super_technician-approval.html'
+
+class RadiologistApprovalPage(TemplateView):
+    template_name= 'super_radiologists-approval.html'
+
+class TechnicianPage(TemplateView):
+    template_name= 'super_technician.html'
+
+class RadiologistPage(TemplateView):
+    template_name= 'super_radiologists.html'
+
+class PatientsPage(TemplateView):
+    template_name= 'super_patients.html'
+
+class AllReportPage(TemplateView):
+    template_name= 'super_reports.html'
+
+class TicketListPage(TemplateView):
+    template_name= 'super_tickets.html'
+
+class PriorityMastersPage(TemplateView):
+    template_name= 'super_priority-masters.html'
+
+class ServicesMasterPage(TemplateView):
+    template_name= 'super_services-master.html'
+
+class PaymentManagementPage(TemplateView):
+    template_name= 'super_pay_radiologists.html'

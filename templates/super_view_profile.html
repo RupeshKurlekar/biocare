@@ -1,6 +1,4 @@
 {% include 'header.html' %}
-{% load static %}
-
     <body class="hold-transition light-skin sidebar-mini theme-primary">
 	    <div class="wrapper">
             {% include 'navbar.html' %}
@@ -21,13 +19,13 @@
                                                     </a>
                                                 </li>
                                                 <li class="breadcrumb-item" aria-current="page">
-                                                    <a href="/technician/reports">
-                                                        Reports
+                                                    <a href="index.php">
+                                                        Home
                                                     </a>
                                                 </li>
                                                 <li class="breadcrumb-item active" aria-current="page">
                                                     <a href="javascript:void(0);">
-                                                        Report Details
+                                                        View Profile
                                                     </a>
                                                 </li>
                                             </ol>
@@ -47,21 +45,48 @@
                                     <div class="box">
                                         <div class="box-header with-border flexbox">
                                             <h3 class="box-title">
-                                                Report Details
+                                                View Profile
                                             </h3>
                                             <div class="text-right flex-grow">
-                                                <a href="/technician/reports">
+                                                <a href="index.php">
                                                     <button type="button" class="btn btn-dark">Back</button>
                                                 </a>
                                             </div>
                                         </div>
                                         <!-- /.box-header -->
                                         <div class="box-body">
-                                         
+                                            <div class="row">
+                                                <div class="col-md-2 col-lg-2">
+                                                    <div class="text-center">
+                                                        <img src="../images/icon.jpeg" class="rounded-circle" alt="user" width="150">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <h3 class="mt-30">Lifecare Pathology</h3>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12 mt-20">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-2 col-md-2">Address: </label>
+                                                        <label class="font-weight-bold col-lg-10 col-md-10">Counts Building, Bandra (E), Mumbai, Maharashtra, Pincode: 400051</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-2 col-md-2">Contact Number: </label>
+                                                        <label class="font-weight-bold col-lg-10 col-md-10">9876556789</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-2 col-md-2">Email Address: </label>
+                                                        <label class="font-weight-bold col-lg-10 col-md-10">dummy@gmail.com</label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <!-- /.box-body -->
                                         <div class="box-footer text-right">
-                                            <a href="/technician/reports">
+                                            <a href="index.php">
                                                 <button type="button" class="btn btn-dark">Back</button>
                                             </a>
                                         </div>
@@ -93,7 +118,6 @@
 	
         <!-- Vendor JS -->
         {% include 'script.html' %}
-        <script src="{% static 'js/report/reports_detail.js' %}" ></script>
 	
     </body>
 </html>

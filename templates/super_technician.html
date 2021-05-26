@@ -1,0 +1,319 @@
+{% include 'header.html' %}
+    <body class="hold-transition light-skin sidebar-mini theme-primary">
+	    <div class="wrapper">
+            {% include 'navbar.html' %}
+            {% include 'sidebar.html' %}
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+            	    <div class="container-full">
+                        <!-- Content Header (Page header) -->
+                        <div class="content-header">
+                            <div class="d-flex align-items-center">
+                                <div class="mr-auto">
+                                    <div class="d-inline-block align-items-center">
+                                        <nav>
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item">
+                                                    <a href="index.php">
+                                                        <i class="mdi mdi-home-outline"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="breadcrumb-item active" aria-current="page">
+                                                    <a href="javascript:void(0);">
+                                                        Technician
+                                                    </a>
+                                                </li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="row">
+
+                                <div class="col-12">
+
+                                    <div class="box">
+                                        <div class="box-header with-border flexbox">
+                                            <h3 class="box-title">
+                                                Technician List
+                                            </h3>
+                                            <div class="text-right flex-grow">
+                                                <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Technician</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <div class="table-responsive">
+                                                <table class="data_tbl table table-bordered table-striped" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Sr. No.</th>
+                                                            <th>ID</th>
+                                                            <th>Name</th>
+                                                            <th>Phone No</th>
+                                                            <th>Email</th>
+                                                            <th>Location</th>
+                                                            <th width="20%">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>#TECH_1</td>
+                                                            <td>Suraj Kadam</td>
+                                                            <td>9769123457</td>
+                                                            <td>suraj@gmail.com</td>
+                                                            <td>Andheri</td>
+                                                            <td>
+                                                                <a href="javascript:void(0);" data-toggle="modal" data-target=".editModal"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
+                                                                <a href="javascript:void(0);" data-toggle="modal" data-target=".viewModal"><button class="btn btn-sm btn-warning" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i>&nbsp;View</button></a>
+                                                                <a href="technician-patientslist.php"><button class="btn btn-sm btn-info" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i>&nbsp;View Patients</button></a>
+                                                                <button class="btn btn-sm btn-danger delRow" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>#TECH_2</td>
+                                                            <td>Arjun Rathod</td>
+                                                            <td>9876543212</td>
+                                                            <td>arjun@gmail.com</td>
+                                                            <td>Mahim</td>
+                                                            <td>
+                                                                <a href="javascript:void(0);" data-toggle="modal" data-target=".editModal"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
+                                                                <a href="javascript:void(0);" data-toggle="modal" data-target=".viewModal"><button class="btn btn-sm btn-warning" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i>&nbsp;View</button></a>
+                                                                <a href="technician-patientslist.php"><button class="btn btn-sm btn-info" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i>&nbsp;View Patients</button></a>
+                                                                <button class="btn btn-sm btn-danger delRow" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Sr. No.</th>
+                                                            <th>ID</th>
+                                                            <th>Name</th>
+                                                            <th>Age</th>
+                                                            <th>Gender</th>
+                                                            <th>Location</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </section>
+                        <!-- /.content -->
+                        
+                        <div id="addModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="" method="POST" >
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Add Technician</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Name <small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Patient Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Phone Number <small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Patient Phone Number">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Email <small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Technician Email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Location <small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Technician Email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Profile Photo: <small class="text-danger">*</small></label>
+                                                        <input type="file" name="file" class="form-control" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <label>Address: <small class="text-danger">*</small></label>
+                                                    <textarea rows="3" class="form-control" placeholder="Enter Address"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer text-right" style="width: 100%;">
+                                            <button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>
+                                            <button type="submit" name="submit" class="btn btn-success text-left">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+
+                        <div class="modal fade editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="" method="POST" >
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Add Technician</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Name <small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Patient Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Phone Number <small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Patient Phone Number">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Email<small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Technician Email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Location<small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Technician Email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Profile Photo: <small class="text-danger">*</small></label>
+                                                        <input type="file" name="file" class="form-control" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <label>Address: <small class="text-danger">*</small></label>
+                                                    <textarea rows="3" class="form-control" placeholder="Enter Address"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer text-right" style="width: 100%;">
+                                            <button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>
+                                            <button type="submit" name="submit" class="btn btn-success text-left">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+
+                        <div class="modal fade viewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <form action="" method="POST" >
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Technician Details</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">ID: </label>
+                                                        <label>#TECH_1</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Name: </label>
+                                                        <label>Suraj Kadam</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Phone Number: </label>
+                                                        <label>97696412345</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Email: </label>
+                                                        <label>Suraj@gmail.com</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Location: </label>
+                                                        <label>Andheri</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Address: </label>
+                                                        <label>A/1 Dhawal Apts, Gr Flr, Factory Lane, Oppcant Tower Below Jankalyan Bank, Borivli (w)</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer text-right" style="width: 100%;">
+                                            <button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                      <!-- /.modal -->
+
+            	    </div>
+                </div>
+                 <!-- /.content-wrapper -->
+            {% include 'footer.html' %}
+
+             <!-- Control Sidebar -->
+            
+             <!-- /.control-sidebar -->
+
+             <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+  
+        </div>
+        <!-- ./wrapper -->	 
+	
+        <!-- Vendor JS -->
+        {% include 'script.html' %}
+	
+    </body>
+</html>
+
+
+
+<td>Suraj Kadam</td>
+<td>9769123457</td>
+<td>suraj@gmail.com</td>

@@ -1,8 +1,10 @@
 {% include 'header.html' %}
-    <body class="hold-transition theme-primary light-skin fixed sidebar-collapse">
+    <body class="hold-transition light-skin sidebar-mini theme-primary">
 	    <div class="wrapper">
+            {% include 'navbar.html' %}
+            {% include 'sidebar.html' %}
                 <!-- Content Wrapper. Contains page content -->
-                <div class="content-wrapper" style="padding-top: 0px;">
+                <div class="content-wrapper">
             	    <div class="container-full">
                         <!-- Content Header (Page header) -->
                         <div class="content-header">
@@ -12,18 +14,18 @@
                                         <nav>
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item">
-                                                    <a href="javascript:void(0);">
+                                                    <a href="index.php">
                                                         <i class="mdi mdi-home-outline"></i>
                                                     </a>
                                                 </li>
                                                 <li class="breadcrumb-item" aria-current="page">
-                                                    <a href="/technician/login">
-                                                        Login
+                                                    <a href="index.php">
+                                                        Home
                                                     </a>
                                                 </li>
                                                 <li class="breadcrumb-item active" aria-current="page">
-                                                    <a href="/technician/register">
-                                                        Register
+                                                    <a href="javascript:void(0);">
+                                                        Update Profile
                                                     </a>
                                                 </li>
                                             </ol>
@@ -43,10 +45,10 @@
                                         <div class="box">
                                             <div class="box-header with-border flexbox">
                                                 <h3 class="box-title">
-                                                    Techician Registration
+                                                    Update Profile
                                                 </h3>
                                                 <div class="text-right flex-grow">
-                                                    <a href="/technician/login">
+                                                    <a href="index.php">
                                                         <button type="button" class="btn btn-dark">Back</button>
                                                     </a>
                                                 </div>
@@ -57,49 +59,37 @@
                                                     <div class="col-md-12 col-lg-12">
                                                         <div class="form-group">
                                                             <label>Name <small class="text-danger">*</small></label>
-                                                            <input type="text" class="form-control" placeholder="Enter Name" id="full_name">
+                                                            <input type="text" class="form-control" placeholder="Enter Name" value="Lifecare Pathology">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label>Phone Number: <small class="text-danger">*</small></label>
-                                                            <input type="text" class="form-control" placeholder="Enter Phone Number" id="mobile_no">
+                                                            <input type="text" class="form-control" placeholder="Enter Phone Number" value="9876556789">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label>Email Address: <small class="text-danger">*</small></label>
-                                                            <input type="text" class="form-control" placeholder="Enter Email Address" id="email">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-lg-6">
-                                                        <div class="form-group">
-                                                            <label>Password: <small class="text-danger">*</small></label>
-                                                            <input type="password" class="form-control" placeholder="Enter Password" id="password">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-lg-6">
-                                                        <div class="form-group">
-                                                            <label>Confirm Password: <small class="text-danger">*</small></label>
-                                                            <input type="password" class="form-control" placeholder="Enter Confirm Password" id="confirm_password">
+                                                            <input type="text" class="form-control" placeholder="Enter Email Address" value="dummy@gmail.com">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 col-lg-12">
                                                         <div class="form-group">
                                                             <label>Profile Photo: <small class="text-danger">*</small></label>
-                                                            <input type="file" name="file" class="form-control" id="profile_picture">
+                                                            <input type="file" name="file" class="form-control" >
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 col-lg-12">
                                                         <label>Address: <small class="text-danger">*</small></label>
-                                                        <textarea rows="3" class="form-control" placeholder="Enter Address" id="address"></textarea>
+                                                        <textarea rows="3" class="form-control" placeholder="Enter Address">Counts Building, Bandra (E), Mumbai, Maharashtra, Pincode: 400051</textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- /.box-body -->
                                             <div class="box-footer text-right">
-                                                <button type="button" name="submit" class="btn btn-success" id="submitTechnician">Submit</button>
-                                                <a href="/technician/login">
+                                                <button type="submit" name="submit" class="btn btn-success">Submit</button>
+                                                <a href="index.php">
                                                     <button type="button" class="btn btn-dark">Back</button>
                                                 </a>
                                             </div>
@@ -132,7 +122,6 @@
 	
         <!-- Vendor JS -->
         {% include 'script.html' %}
-        <script src="../static/js/technician/add_technician.js"></script>
 	
     </body>
 </html>

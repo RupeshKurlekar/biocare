@@ -1,0 +1,544 @@
+<?php
+error_reporting(0);
+include '../Admin_config/connection.php';
+include 'header.php';
+include '../Admin_controllers/site_controller.php';
+include '../Admin_modules/site_model.php';
+?>
+
+    <body class="hold-transition light-skin sidebar-mini theme-primary">
+	    <div class="wrapper">
+            {% include 'navbar.html' %}
+            {% include 'sidebar.html' %}
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+            	    <div class="container-full">
+            		    <!-- Main content -->
+            		    <section class="content">
+            			    <div class="row">
+			                    <div class="col-12">
+
+                                    <div class="box">
+                                        <div class="box-header with-border">
+                                            <h4 class="box-title">Edit Site</h4>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <!-- <form class="form-horizontal form-element"> -->
+                                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                                            <div class="box-body">
+                                                <h4 class="mt-0 mb-20">Template</h4>
+                                                <div class="form-group row">
+                                                    <label for="template" class="col-sm-2 control-label">Template <small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <select class="form-control form-select" name="template" id="template" required >
+                                                            <option value="">Choose Template</option>
+                                                            <option value="1" <?php if($siteData['template']==1): ?>selected<?php endif; ?> >Template 1</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <hr class="mt-35 mb-25">
+
+                                                <h4 class="mt-0 mb-20">Site</h4>
+                                                <div class="form-group row">
+                                                    <label for="siteName" class="col-sm-2 control-label">Site Name <small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="siteName" id="siteName" placeholder="Enter Site Name" value="<?php echo $siteData['site_name']; ?>" required>
+                                                    </div>
+                                                </div>
+                                                <hr class="mt-35 mb-25">
+
+                                                <h4 class="mt-0 mb-20">Logo</h4>
+                                                <div class="form-group row">
+                                                    <label for="logo1" class="col-sm-2 control-label">Logo 1 <small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="file">
+                                                            <input type="file" name="logo1" id="logo1" >
+                                                            <input type="hidden" name="oldLogo1" value="<?php echo $siteData['logo1']; ?>" required>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="logo2" class="col-sm-2 control-label">Logo 2 <small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="file">
+                                                            <input type="file" name="logo2" id="logo2" >
+                                                            <input type="hidden" name="oldLogo2" value="<?php echo $siteData['logo2']; ?>" required>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <hr class="mt-35 mb-25">
+
+                                                <h4 class="mt-0 mb-20">Banner</h4>
+                                                <div class="form-group row">
+                                                    <label for="bannerDesktop" class="col-sm-2 control-label">Banner (Desktop)<small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="file">
+                                                            <input type="file" name="bannerDesktop" id="bannerDesktop" >
+                                                            <input type="hidden" name="oldBannerDesktop" value="<?php echo $siteData['bannerDesktop']; ?>" required>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="bannerMobile" class="col-sm-2 control-label">Banner (Mobile)<small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="file">
+                                                            <input type="file" name="bannerMobile" id="bannerMobile" >
+                                                            <input type="hidden" name="oldBannerMobile" value="<?php echo $siteData['bannerMobile']; ?>" required>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <hr class="mt-35 mb-25">
+
+                                                <h4 class="mt-0 mb-20">Who are we</h4>
+                                                <div class="form-group row">
+                                                    <label for="whoContent" class="col-sm-2 control-label">Content<small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <textarea id="whoContent" class="whoContent" name="whoContent" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo html_entity_decode($siteData['whoContent']); ?></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="whoImage" class="col-sm-2 control-label">Image<small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="file">
+                                                            <input type="file" name="whoImage" id="whoImage" >
+                                                            <input type="hidden" name="oldWhoImage" value="<?php echo $siteData['whoImage']; ?>" required>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <hr class="mt-35 mb-25">
+
+                                                <h4 class="mt-0 mb-20">Project</h4>
+                                                <div class="form-group row">
+                                                    <label for="projectName" class="col-sm-2 control-label">Project Name<small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="projectName" id="projectName" placeholder="Enter Project Name" value="<?php echo $siteData['projectName']; ?>" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="projectImage" class="col-sm-2 control-label">Image<small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="file">
+                                                            <input type="file" name="projectImage" id="projectImage" >
+                                                            <input type="hidden" name="oldProjectImage" value="<?php echo $siteData['projectImage']; ?>" required>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="projectContent" class="col-sm-2 control-label">Content<small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <textarea class="projectContent" id="projectContent" name="projectContent" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo html_entity_decode($siteData['projectContent']); ?></textarea>
+                                                    </div>
+                                                </div>
+                                                <hr class="mt-35 mb-25">
+
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <h4 class="mt-0 mb-20">Location Advantage</h4>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <button type="button" class="btn btn-rounded btn-success pull-right addLoc">Add</button>
+                                                    </div>
+                                                    <div class="col-sm-12" id="location_div">
+                                                        <?php if(!empty($locationData)): ?>
+                                                        <?php foreach($locationData AS $k_loc_dt=>$e_loc_dt): ?>
+                                                        <div class="form-group row" id="location_fields">
+                                                            <div class="col-sm-10">
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-2 control-label">Image<small class="text-danger">*</small>:</label>
+                                                                    <div class="col-sm-6">
+                                                                        <label class="file">
+                                                                            <input type="file" name="locationAdvImg[]" >
+                                                                        </label>
+                                                                    </div>
+                                                                    <label class="col-sm-4 control-label">
+                                                                        <input type="hidden" name="locationAdvImg[]" value="<?php echo $e_loc_dt['locImg']; ?>" required>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label for="projectName" class="col-sm-2 control-label">Title<small class="text-danger">*</small>:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="locationAdvTitle[]"  placeholder="Enter Title" value="<?php echo $e_loc_dt['locTitle']; ?>" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label for="projectContent" class="col-sm-2 control-label">Sub-Title<small class="text-danger">*</small>:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="locationAdvSubTitle[]" placeholder="Enter Sub Title" value="<?php echo $e_loc_dt['locSubTitle']; ?>" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <?php if($k_loc_dt!=0): ?>
+                                                            <div class="col-sm-2">
+                                                                <button type="button" class="btn btn-rounded btn-danger pull-right deleteLoc">Remove</button>
+                                                            </div>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                        <?php endforeach; ?>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                                <hr class="mt-35 mb-25">
+
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <h4 class="mt-0 mb-20">Amenities & Specifications</h4>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <button type="button" class="btn btn-rounded btn-success pull-right addAmenities">Add</button>
+                                                    </div>
+                                                    <div class="col-sm-12" id="amenities_div">
+                                                        <?php if(!empty($amenitiesData)): ?>
+                                                        <?php foreach($amenitiesData AS $k_amt_dt=>$e_amt_dt): ?>
+                                                        <div class="form-group row" id="amenities_fields">
+                                                            <div class="col-sm-10">
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-2 control-label">Title<small class="text-danger">*</small>:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="amenitiesTitle[]"  placeholder="Enter Title" value="<?php echo $e_amt_dt['amenitiesName']; ?>" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <?php if($k_amt_dt!=0): ?>
+                                                            <div class="col-sm-2">
+                                                                <button type="button" class="btn btn-rounded btn-danger pull-right deleteAmenities">Remove</button>
+                                                            </div>
+                                                            <?php endif; ?>
+                                                            <div class="col-sm-10 option_div" data-opt="<?php echo $k_amt_dt; ?>">
+                                                                <?php if(!empty($amenitiesOptData)): ?>
+                                                                <?php foreach($amenitiesOptData AS $k_opt_dt=>$e_opt_dt): ?>
+                                                                    <?php if($e_opt_dt['fkId']==$e_amt_dt['amenitiesId']): ?>
+                                                                        <div class="form-group row" id="option_fields">
+                                                                            <label class="col-sm-2 control-label">Option<small class="text-danger">*</small>:</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" name="amenitiesSubTitle[<?php echo $k_amt_dt; ?>][]" value="<?php echo $e_opt_dt['optionName']; ?>" placeholder="Enter Option" required>
+                                                                            </div>
+                                                                            <?php if($k_opt_dt!=0): ?>
+                                                                            <div class="col-sm-2">
+                                                                                <button type="button" class="btn btn-rounded btn-danger removeOption">Remove</button>
+                                                                            </div>
+                                                                            <?php else: ?>
+                                                                            <div class="col-sm-2">
+                                                                                <button type="button" class="btn btn-rounded btn-success addOption">Add Option</button>
+                                                                            </div>
+                                                                            <?php endif; ?>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; ?>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                        </div>
+                                                        <?php endforeach; ?>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                                <hr class="mt-35 mb-25">
+
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <h4 class="mt-0 mb-20">Floor/Surrounding Plan:</h4>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <button type="button" class="btn btn-rounded btn-success pull-right addPlan">Add</button>
+                                                    </div>
+                                                    <div class="col-sm-12" id="plan_div">
+                                                        <?php if(!empty($planData)): ?>
+                                                        <?php foreach($planData AS $k_plan_dt=>$e_plan_dt): ?>
+                                                        <div class="form-group row" id="plan_fields">
+                                                            <div class="col-sm-10">
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-2 control-label">Image<small class="text-danger">*</small>:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <label class="file">
+                                                                            <input type="file" name="planImage[]" >
+                                                                        </label>
+                                                                        <input type="hidden" name="planImage[]" value="<?php echo $e_plan_dt['planImg']; ?>" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-2 control-label">Title<small class="text-danger">*</small>:</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="planTitle[]" placeholder="Enter Title" value="<?php echo $e_plan_dt['planName']; ?>" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <?php if($k_plan_dt!=0): ?>
+                                                            <div class="col-sm-2">
+                                                                <button type="button" class="btn btn-rounded btn-danger pull-right deletePlan">Remove</button>
+                                                            </div>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                        <?php endforeach; ?>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                                <hr class="mt-35 mb-25">
+
+                                                <h4 class="mt-0 mb-20">Contact Details:</h4>
+                                                <div class="form-group row">
+                                                    <label for="address" class="col-sm-2 control-label">Address<small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <textarea type="text" class="form-control" name="address" placeholder="Enter Address" rows="3" required><?php echo $siteData['address']; ?></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="phone" class="col-sm-2 control-label">Phone No<small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="phone" placeholder="Enter Phone Number" value="<?php echo $siteData['phone']; ?>" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="call_now" class="col-sm-2 control-label">Call Now/IVR<small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="call_now" placeholder="Enter Call Now/IVR" value="<?php echo $siteData['call_now']; ?>" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="rera" class="col-sm-2 control-label">RERA No<small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="rera" placeholder="Enter RERA No" value="<?php echo $siteData['rera']; ?>" required>
+                                                    </div>
+                                                </div>
+                                                <hr class="mt-35 mb-25">
+
+                                                <h4 class="mt-0 mb-20">About Us:</h4>
+                                                <div class="form-group row">
+                                                    <label for="aboutUs" class="col-sm-2 control-label">About<small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <textarea id="aboutUs" name="aboutUs" class="aboutUs" placeholder="Enter something here..." style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo html_entity_decode($siteData['aboutUs']); ?></textarea>
+                                                    </div>
+                                                </div>
+                                                <hr class="mt-35 mb-25">
+
+                                                <h4 class="mt-0 mb-20">Notifications:</h4>
+                                                <div class="form-group row">
+                                                    <label for="siteEmail" class="col-sm-2 control-label">Email ID <small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="email" class="form-control" name="siteEmail" id="siteEmail" value="<?php echo $siteData['siteEmail']; ?>" placeholder="Enter Email ID" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="whatsAppNum" class="col-sm-2 control-label">WhatsApp Number <small class="text-danger">*</small>:</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="whatsAppNum" id="whatsAppNum" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern=".{10,10}" maxlength="10" placeholder="Enter WhatsApp Number" value="<?php echo $siteData['whatsAppNum']; ?>" required>
+                                                    </div>
+                                                </div>
+                                                <hr class="mt-35 mb-25">
+                                            </div>
+                                            <!-- /.box-body -->
+                                            <div class="box-footer">
+                                                <a href="sites.php">
+                                                    <button type="button" class="btn btn-rounded btn-danger">Cancel</button>
+                                                </a>
+                                                <input type="hidden" name="siteId" value="<?php echo $siteData['site_id']; ?>" required>
+                                                <button type="submit" name="edit_site" class="btn btn-rounded btn-info pull-right">Submit</button>
+                                            </div>
+                                            <!-- /.box-footer -->
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- /.content -->
+                    </div>
+                </div>
+                
+                 <!-- /.content-wrapper -->
+                {% include 'footer.html' %}
+                 <!-- Control Sidebar -->
+                
+                 <!-- /.control-sidebar -->
+                 <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+                 <div class="control-sidebar-bg"></div>
+
+                 <div class="hide dummy" >
+                    <div id="location_fields">
+                        <div class="form-group row locationRow">
+                            <div class="col-sm-10">
+                                <hr>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 control-label">Image<small class="text-danger">*</small>:</label>
+                                    <div class="col-sm-10">
+                                        <label class="file">
+                                            <input type="file" name="locationAdvImg[]" >
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="projectName" class="col-sm-2 control-label">Title<small class="text-danger">*</small>:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="locationAdvTitle[]" placeholder="Enter Title" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="projectContent" class="col-sm-2 control-label">Sub-Title<small class="text-danger">*</small>:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="locationAdvSubTitle[]" placeholder="Enter Sub Title" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="button" class="btn btn-rounded btn-danger pull-right deleteLoc">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="amenities_fields">
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <hr>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 control-label">Title<small class="text-danger">*</small>:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="amenitiesTitle[]"  placeholder="Enter Title" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="button" class="btn btn-rounded btn-danger pull-right deleteAmenities">Remove</button>
+                            </div>
+                            <div class="col-sm-10 option_div" data-opt="">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 control-label">Option<small class="text-danger">*</small>:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control optInput" name="" placeholder="Enter Option" required>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button type="button" class="btn btn-rounded btn-success addOption" data-name="">Add Option</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="option_fields">
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label">Option<small class="text-danger">*</small>:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control optInput" name="" placeholder="Enter Option" required>
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="button" class="btn btn-rounded btn-danger removeOption">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="plan_fields">
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <hr>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 control-label">Image<small class="text-danger">*</small>:</label>
+                                    <div class="col-sm-10">
+                                        <label class="file">
+                                            <input type="file" name="planImage[]" >
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 control-label">Title<small class="text-danger">*</small>:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="planTitle[]" placeholder="Enter Title" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="button" class="btn btn-rounded btn-danger pull-right deletePlan">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <input type="hidden" value=""> -->
+                </div>
+  
+            </div>
+            <!-- ./wrapper -->	 
+            <!-- Vendor JS -->
+            {% include 'script.html' %}
+
+            <script src="../assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"></script>
+
+            <script>
+                $(document).ready(function(){
+                    $('.whoContent').wysihtml5();	
+                    $('.projectContent').wysihtml5();
+                    $('.aboutUs').wysihtml5();
+                });
+            </script>
+
+            <script>
+                $(document).ready(function(){
+
+                    $("a").each(function() { 
+                        var href = $(this).attr('data-wysihtml5-command');
+                        if (href == "Outdent" || href == "Indent" || href == "createLink" || href == "insertImage" || href == "formatBlock" || href == "insertUnorderedList" || href == "insertOrderedList") {
+                                $(this).hide();
+                        }
+                    });
+
+                    $('.wysihtml5-toolbar').children('li:first-child').hide();
+
+                    $('.addLoc').on('click', function(){
+                        var location_fields=$('.dummy #location_fields').clone();
+                        $('#location_div').append(location_fields);
+                    });
+
+                    $('body').on('click', '.deleteLoc', function(){
+                        // alert('deleteLoc');
+                        $(this).parents('#location_fields').remove();
+                    });
+
+                    var am=parseInt("<?php echo count($amenitiesOptData); ?>");
+
+                    $('.addAmenities').on('click', function(){
+                        am++;
+                        var optName="amenitiesSubTitle["+am+"][]";
+                        
+                        $('.dummy #amenities_fields .optInput').attr('name', optName);
+                        // $('.dummy #amenities_fields .addOption').data('name', am);
+                        $('.dummy #amenities_fields .option_div').attr('data-opt', am);
+
+                        var amenities_fields=$('.dummy #amenities_fields').clone();
+                        $('#amenities_div').append(amenities_fields);
+                    });
+
+                    $('body').on('click', '.deleteAmenities', function(){
+                        // alert('deleteLoc');
+                        $(this).parents('#amenities_fields').remove();
+                        am--;
+                    });
+
+
+
+                    $('body').on('click', '.addOption', function(){
+                        var cnt=$(this).parents('.option_div').attr('data-opt');
+
+                        var optName="amenitiesSubTitle["+cnt+"][]";
+                        
+                        $('.dummy #option_fields .optInput').attr('name', optName);
+
+                        var option_fields=$('.dummy #option_fields').clone();
+
+                        $(this).parents('.option_div').append(option_fields);
+                    });
+
+                    $('body').on('click', '.removeOption', function(){
+                        // alert('deleteLoc');
+                        $(this).parents('#option_fields').remove(); 
+                    });
+
+
+                    $('.addPlan').on('click', function(){
+                        var plan_fields=$('.dummy #plan_fields').clone();
+                        $('#plan_div').append(plan_fields);
+                    });
+
+                    $('body').on('click', '.deletePlan', function(){
+                        // alert('deleteLoc');
+                        $(this).parents('#plan_fields').remove();
+                    });
+                    
+                });
+            </script>
+    </body>
+</html>
+

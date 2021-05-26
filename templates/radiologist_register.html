@@ -1,0 +1,215 @@
+{% include 'header.html' %}
+{% load static %}
+
+    <body class="hold-transition theme-primary light-skin fixed sidebar-collapse">
+	    <div class="wrapper">
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper" style="padding-top: 0px;">
+            	    <div class="container-full">
+                        <!-- Content Header (Page header) -->
+                        <div class="content-header">
+                            <div class="d-flex align-items-center">
+                                <div class="mr-auto">
+                                    <div class="d-inline-block align-items-center">
+                                        <nav>
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item">
+                                                    <a href="javascript:void(0);">
+                                                        <i class="mdi mdi-home-outline"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="breadcrumb-item" aria-current="page">
+                                                    <a href="/radiologist/login">
+                                                        Login
+                                                    </a>
+                                                </li>
+                                                <li class="breadcrumb-item active" aria-current="page">
+                                                    <a href="javascript:void(0);">
+                                                        Register
+                                                    </a>
+                                                </li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="row">
+
+                                <div class="col-12">
+                                    <form action="" method="post">
+                                        <div class="box">
+                                            <div class="box-header with-border flexbox">
+                                                <h3 class="box-title">
+                                                    Radiologist Registration
+                                                </h3>
+                                                <div class="text-right flex-grow">
+                                                    <a href="/radiologist/login">
+                                                        <button type="button" class="btn btn-dark">Back</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-lg-12">
+                                                        <div class="form-group">
+                                                            <label>Name <small class="text-danger">*</small></label>
+                                                            <input type="text" id="radiologist_name" class="form-control" placeholder="Enter Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Phone Number: <small class="text-danger">*</small></label>
+                                                            <input type="text" id="radiologist_mob_no" class="form-control" placeholder="Enter Phone Number">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Email Address: <small class="text-danger">*</small></label>
+                                                            <input type="text" id="radiologist_email"  class="form-control" placeholder="Enter Email Address">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Password: <small class="text-danger">*</small></label>
+                                                            <input type="password" id="radiologist_password" class="form-control" placeholder="Enter Password">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Confirm Password: <small class="text-danger">*</small></label>
+                                                            <input type="password" id="radiologist_confirm_password" class="form-control" placeholder="Enter Confirm Password">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-lg-12">
+                                                        <div class="form-group">
+                                                            <label>Profile Photo: <small class="text-danger">*</small></label>
+                                                            <input type="file" id="profile_picture" name="file" class="form-control" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-lg-12">
+                                                        <label>Address: <small class="text-danger">*</small></label>
+                                                        <textarea rows="3" id="radiologist_address" class="form-control" placeholder="Enter Address"></textarea>
+                                                    </div>
+                                                    <div class="col-md-12 col-lg-12">
+                                                        <label>Area: <small class="text-danger">*</small></label>
+                                                        <input type="text" id="radiologist_area" class="form-control" placeholder="Enter Area">
+                                                    </div>
+                                                    <div class="col-md-12 col-lg-12 mt-10">
+                                                        <div class="form-group">
+                                                            <label>Qualification <small class="text-danger">*</small></label>
+                                                            <input type="text" id="radiologist_qualification" class="form-control" placeholder="Enter Qualification">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-lg-12">
+                                                        <div class="form-group">
+                                                            <label>Experience <small class="text-danger">*</small></label>
+                                                            <input type="text" id="radiologist_experience" class="form-control" placeholder="Enter Experience">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-lg-12">
+                                                        <div class="form-group">
+                                                            <label>Speciality <small class="text-danger">*</small></label>
+                                                            <textarea rows="3" id="radiologist_speciality" class="form-control" placeholder="Enter Speciality"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-lg-12">
+                                                        <div class="form-group">
+                                                          
+                                                            <label>Type <small class="text-danger">*</small></label>
+                                                            <div class="radio-list">
+                                                                <label class="radio-inline p-0 mr-10">
+                                                                    <div class="radio radio-info">
+                                                                        <input type="radio"  id="type1" value="1" onclick="handleTypeClick(this);" name="radiologist_type">
+                                                                        <label for="type1">Technician</label>
+                                                                    </div>
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <div class="radio radio-info">
+                                                                        <input type="radio"  id="type2" value="2" onclick="handleTypeClick(this);" name="radiologist_type">
+                                                                        <label for="type2">Biocare</label>
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                        
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 col-lg-12">
+                                                        <div class="form-group technicians_form">
+                                                          
+                                                            <label>Technician <small class="text-danger">*</small></label>
+                                                            <select name="technician" class="form-control select2 technician_select" id="technician" style="width: 100%;" >
+                                                                  
+                                                            </select>
+                                                        
+                                                        </div>
+                                                    </div>
+    
+                                                    <div class="col-md-12 col-lg-12">
+                                                        <div class="form-group">
+                                                          
+                                                            <label>GST <small class="text-danger">*</small></label>
+                                                            <div class="radio-list">
+                                                                <label class="radio-inline p-0 mr-10">
+                                                                    <div class="radio radio-info">
+                                                                        <input type="radio"  id="radiologist_gst1" value="1" name="radiologist_gst">
+                                                                        <label for="radiologist_gst1">Yes</label>
+                                                                    </div>
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <div class="radio radio-info">
+                                                                        <input type="radio"  id="radiologist_gst2" value="2" name="radiologist_gst">
+                                                                        <label for="radiologist_gst2">No</label>
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                        
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.box-body -->
+                                            <div class="box-footer text-right">
+                                                <button type="button" onclick="submitRadiologist()" name="submit" class="btn btn-success">Submit</button>
+                                                <a href="/radiologist/login">
+                                                    <button type="button" class="btn btn-dark">Back</button>
+                                                </a>
+                                            </div>
+                                            <!-- /.box-footer -->
+                                        </div>
+                                        <!-- /.box -->
+                                    </form>
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </section>
+                        <!-- /.content -->
+
+            	    </div>
+                </div>
+                 <!-- /.content-wrapper -->
+                 {% include 'footer.html' %}
+
+             <!-- Control Sidebar -->
+    
+             <!-- /.control-sidebar -->
+
+             <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+  
+        </div>
+        <!-- ./wrapper -->	 
+	
+        <!-- Vendor JS -->
+        {% include 'script.html' %}
+        <script src="{% static 'js/radiologist/add_radiologist.js' %}" ></script>
+	
+    </body>
+</html>

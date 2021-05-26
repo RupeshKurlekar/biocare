@@ -1,0 +1,106 @@
+<?php
+error_reporting(0);
+include '../Admin_config/connection.php';
+include 'header.php';
+include '../Admin_controllers/login.php';
+include '../Admin_modules/login_validate.php';
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../images/favicon.ico">
+
+    <title>JSW</title>
+  
+	<!-- Vendors Style-->
+	<link rel="stylesheet" href="css/vendors_css.css">
+	  
+	<!-- Style-->  
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/skin_color.css">	
+
+</head>
+	
+<body class="hold-transition theme-primary bg-img" style="background-image: url(../images/auth-bg/bg-1.jpg)" data-overlay="5">
+	
+	<div class="container h-p100">
+		<div class="row align-items-center justify-content-md-center h-p100">	
+			
+			<div class="col-12">
+				<div class="row justify-content-center no-gutters">
+					<div class="col-lg-5 col-md-5 col-12">
+						<div class="bg-white rounded30 shadow-lg">
+							<div class="content-top-agile p-20 pb-0">
+								<h2 class="text-primary">Emter Username</h2>
+								<!--<p class="mb-0">Sign in to continue to ArghyamCare.</p>							-->
+							</div>
+							<div class="p-40">
+								<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+									<div class="form-group">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text bg-transparent"><i class="ti-user"></i></span>
+											</div>
+											<input type="text" name="Username" class="form-control pl-15 bg-transparent" placeholder="Username" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern=".{10,10}" maxlength="10"  required="">
+										</div>
+									</div>
+									<!--<div class="form-group">-->
+									<!--	<div class="input-group mb-3">-->
+									<!--		<div class="input-group-prepend">-->
+									<!--			<span class="input-group-text  bg-transparent"><i class="ti-lock"></i></span>-->
+									<!--		</div>-->
+									<!--		<input type="password" name="Password" class="form-control pl-15 bg-transparent" placeholder="Password" required>-->
+									<!--	</div>-->
+									<!--</div>-->
+									  <div class="row">
+										<!--<div class="col-6">-->
+										<!--  <div class="checkbox">-->
+										<!--	<input type="checkbox" id="basic_checkbox_1" >-->
+										<!--	<label for="basic_checkbox_1">Remember Me</label>-->
+										<!--  </div>-->
+										<!--</div>-->
+										 <!--/.col -->
+										<!--<div class="col-6">-->
+										<!-- <div class="fog-pwd text-right">-->
+										<!--	<a href="" class="hover-warning"><i class="ion ion-locked"></i> Forgot pwd?</a><br>-->
+										<!--  </div>-->
+										<!--</div>-->
+										 <!--/.col -->
+										<div class="col-12 text-center">
+										  <button type="submit" name="forgot_pwd" class="btn btn-danger mt-10">SUBMIT</button>
+										</div>
+										<!-- /.col -->
+									  </div>
+								</form>	
+								<!--<div class="text-center">-->
+								<!--	<p class="mt-15 mb-0">Don't have an account? <a href="auth_register.html" class="text-warning ml-5">Sign Up</a></p>-->
+								<!--</div>	-->
+							</div>						
+						</div>
+						<!--<div class="text-center">-->
+						<!--  <p class="mt-20 text-white">- Sign With -</p>-->
+						<!--  <p class="gap-items-2 mb-20">-->
+						<!--	  <a class="btn btn-social-icon btn-round btn-facebook" href="#"><i class="fa fa-facebook"></i></a>-->
+						<!--	  <a class="btn btn-social-icon btn-round btn-twitter" href="#"><i class="fa fa-twitter"></i></a>-->
+						<!--	  <a class="btn btn-social-icon btn-round btn-instagram" href="#"><i class="fa fa-instagram"></i></a>-->
+						<!--	</p>	-->
+						<!--</div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Vendor JS -->
+	<script src="js/vendors.min.js"></script>
+    <script src="../assets/icons/feather-icons/feather.min.js"></script>	
+
+</body>
+</html>

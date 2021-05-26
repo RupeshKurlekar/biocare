@@ -1,0 +1,439 @@
+{% include 'header.html' %}
+    <body class="hold-transition light-skin sidebar-mini theme-primary">
+        <div class="wrapper">
+            {% include 'navbar.html' %}
+            {% include 'sidebar.html' %}
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <div class="container-full">
+                        <!-- Content Header (Page header) -->
+                        <div class="content-header">
+                            <div class="d-flex align-items-center">
+                                <div class="mr-auto">
+                                    <div class="d-inline-block align-items-center">
+                                        <nav>
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item">
+                                                    <a href="index.php">
+                                                        <i class="mdi mdi-home-outline"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="breadcrumb-item active" aria-current="page">
+                                                    <a href="javascript:void(0);">
+                                                        Radiologists Approval / Disapproval List
+                                                    </a>
+                                                </li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="row">
+
+                                <div class="col-12">
+
+                                    <div class="box">
+                                        <div class="box-header with-border flexbox">
+                                            <h3 class="box-title">
+                                                Radiologists Approval / Disapproval List
+                                            </h3>
+                                            <!-- <div class="text-right flex-grow">
+                                                <button class="btn btn-primary" data-toggle="modal" data-target="#raiseTicketModal">Raise Ticket</button>
+                                            </div> -->
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <ul class="nav nav-tabs nav-fill" role="tablist">
+                                                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#raised_tkt_list" role="tab"><span><i class="mdi mdi-apps"></i></span> <span class="hidden-xs-down ml-15">All</span></a> </li>
+                                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#new_technician" role="tab"><span><i class="mdi mdi-new-box"></i></span> <span class="hidden-xs-down ml-15">New</span></a> </li>
+                                                <li class="nav-item"> <a class="nav-link accpt_tkt_list" data-toggle="tab" href="#accpt_tkt_list" role="tab"><span><i class="mdi mdi-check"></i></span> <span class="hidden-xs-down ml-15">Approved</span></a> </li>
+                                                <!-- <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#ong_tkt_list" role="tab"><span><i class="fa fa-ban"></i></span> <span class="hidden-xs-down ml-15">disapproved</span></a> </li> -->
+                                                <!-- <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#comp_tkt_list" role="tab"><span><i class="mdi mdi-check-all"></i></span> <span class="hidden-xs-down ml-15">Completed</span></a> </li> -->
+                                            </ul>
+                                            <div class="tab-content tabcontent-border">
+                                                <div class="tab-pane active" id="raised_tkt_list" role="tabpanel">
+                                                    <div class="p-15">
+                                                        <div class="table-responsive">
+                                                            <table class="data_tbl table table-bordered table-striped" style="width:100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>ID</th>
+                                                                        <th>Name</th>
+                                                                        <th>Phone No</th>
+                                                                        <th>Email</th>
+                                                                        <th>Speciality</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>#RDLG_1</td>
+                                                                        <td>Mayur Shelar</td>
+                                                                        <td>9769123456</td>
+                                                                        <td>mayur@gmail.com</td>
+                                                                        <td>bone</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>2</td>
+                                                                        <td>#RDLG_2</td>
+                                                                        <td>Suraj Singh</td>
+                                                                        <td>9785642136</td>
+                                                                        <td>Suraj@gmail.com</td>
+                                                                        <td>bone</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>ID</th>
+                                                                        <th>Name</th>
+                                                                        <th>Phone No</th>
+                                                                        <th>Email</th>
+                                                                        <th>Speciality</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="new_technician" role="tabpanel">
+                                                    <div class="p-15">
+                                                        <div class="table-responsive">
+                                                            <table class="data_tbl table table-bordered table-striped" style="width:100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>ID</th>
+                                                                        <th>Name</th>
+                                                                        <th>Phone No</th>
+                                                                        <th>Email</th>
+                                                                        <th>Speciality</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>#RDLG_1</td>
+                                                                        <td>Mayur Shelar</td>
+                                                                        <td>9769123456</td>
+                                                                        <td>mayur@gmail.com</td>
+                                                                        <th>bone</th>
+                                                                        <td><a href="javascript:void(0);" data-toggle="modal" data-target="#modified"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;modified</button></a>
+
+                                                                        <a href="javascript:void(0);" data-toggle="modal" data-target=".viewModal"><button class="btn btn-sm btn-warning" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-eye"></i>&nbsp;view</button></a></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>2</td>
+                                                                        <td>#RDLG_2</td>
+                                                                        <td>Suraj Singh</td>
+                                                                        <td>9785642136</td>
+                                                                        <td>Suraj@gmail.com</td>
+                                                                        <td>bone</td>
+                                                                        <td><a href="javascript:void(0);" data-toggle="modal" data-target="#modified"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;modified</button></a>
+                                                                            <a href="javascript:void(0);" data-toggle="modal" data-target=".viewModal"><button class="btn btn-sm btn-warning" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-eye"></i>&nbsp;view</button></a></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                       <th>Sr. No.</th>
+                                                                        <th>ID</th>
+                                                                        <th>Name</th>
+                                                                        <th>Phone No</th>
+                                                                        <th>Email</th>
+                                                                        <th>Speciality</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="accpt_tkt_list" role="tabpanel">
+                                                    <div class="p-15">
+                                                        <div class="table-responsive">
+                                                            <table class="data_tbl table table-bordered table-striped" style="width:100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>ID</th>
+                                                                        <th>Name</th>
+                                                                        <th>Phone No</th>
+                                                                        <th>Email</th>
+                                                                        <th>Speciality</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>#RDLG_1</td>
+                                                                        <td>Mayur Shelar</td>
+                                                                        <td>9769123456</td>
+                                                                        <td>mayur@gmail.com</td>
+                                                                        <th>bone</th>
+                                                                        <td style="color:#008000;">Approved</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>2</td>
+                                                                        <td>#RDLG_2</td>
+                                                                        <td>Suraj Singh</td>
+                                                                        <td>9785642136</td>
+                                                                        <td>Suraj@gmail.com</td>
+                                                                        <td>bone</td>
+                                                                        <td style="color:#008000;">Approved</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                       <th>Sr. No.</th>
+                                                                        <th>ID</th>
+                                                                        <th>Name</th>
+                                                                        <th>Phone No</th>
+                                                                        <th>Email</th>
+                                                                        <th>Speciality</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </section>
+                        <!-- /.content -->
+                        
+                        <div id="modified" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <form action="" method="POST" >
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Prority Details</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-2 col-lg-2 pt-20">
+                                                            High :<small class="text-danger"></small>
+                                                        </label>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <label>Time<small class="text-danger">*</small></label><br>
+                                                            <label>Within 2 hrs</label>
+                                                            <!--<input type="text" class="form-control" placeholder="Enter Time" aria-controls="DataTables_Table_1">-->
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <label>Rate <small>(in Rs.)</small> <small class="text-danger">*</small></label>
+                                                            <input type="text" class="form-control" placeholder="Enter Rate" aria-controls="DataTables_Table_1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-2 col-lg-2 pt-20">
+                                                            Medium :<small class="text-danger"></small>
+                                                        </label>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <label>Time<small class="text-danger">*</small></label><br>
+                                                            <label>Within 8 hrs</label>
+                                                            <!--<input type="text" class="form-control" placeholder="Enter Time" aria-controls="DataTables_Table_1">-->
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <label>Rate <small>(in Rs.)</small> <small class="text-danger">*</small></label>
+                                                            <input type="text" class="form-control" placeholder="Enter Rate" aria-controls="DataTables_Table_1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12 ">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-2 col-lg-2 pt-20">
+                                                            Low :<small class="text-danger">*</small>
+                                                        </label>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <label>Time<small class="text-danger">*</small></label><br>
+                                                            <label>Within 18 hrs</label>
+                                                            <!--<input type="text" class="form-control" placeholder="Enter Time" aria-controls="DataTables_Table_1">-->
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <label>Rate <small>(in Rs.)</small> <small class="text-danger">*</small></label>
+                                                            <input type="text" class="form-control" placeholder="Enter Rate" aria-controls="DataTables_Table_1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer text-right" style="width: 100%;">
+                                            <button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>
+                                            <button type="submit" name="submit" class="btn btn-success text-left appr_btn">Approved</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+                               <div class="modal fade viewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <form action="" method="POST" >
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Radiologist Details</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">ID: </label>
+                                                        <label>#RDLG_1</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Name: </label>
+                                                        <label>Dr. Ketan Sanghvi</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Phone Number: </label>
+                                                        <label>97696412345</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Email: </label>
+                                                        <label>Ketan@gmail.com</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Qualification: </label>
+                                                        <label>M.O</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Experience: </label>
+                                                        <label>20 years</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Speciality: </label>
+                                                        <label>Back Bone Specialit </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold">Address: </label>
+                                                        <label>A/1 Dhawal Apts, Gr Flr, Factory Lane, Oppcant Tower Below Jankalyan Bank, Borivli (w)</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer text-right" style="width: 100%;">
+                                            <button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+
+                    </div>
+                </div>
+                 <!-- /.content-wrapper -->
+            {% include 'footer.html' %}
+
+             <!-- Control Sidebar -->
+            
+             <!-- /.control-sidebar -->
+
+             <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+  
+        </div>
+        <!-- ./wrapper -->   
+    
+        <!-- Vendor JS -->
+        {% include 'script.html' %}
+
+        <script type="text/javascript">
+            
+            $(document).ready(function(){
+
+                $('#report_drop').on('change', function(){
+
+                    var reportVal = $(this).val();
+
+                    if(reportVal!="")
+                    {
+                        $('#rd_div').show();
+
+                        if(reportVal==1)
+                        {
+                            $('#rd_1').show();
+                            $('#rd_2').hide();
+                        }
+                        else if(reportVal==2)
+                        {
+                            $('#rd_1').hide();
+                            $('#rd_2').show();
+                        }
+                        else
+                        {
+                            $('#rd_1').hide();
+                            $('#rd_2').hide();
+                        }
+                    }
+                    else
+                    {
+                        $('#rd_div').hide();
+                        $('#rd_1').hide();
+                        $('#rd_2').hide();
+                    }
+
+                });
+
+                $('#rd_div').hide();
+                $('#rd_1').hide();
+                $('#rd_2').hide();
+                
+                $('.appr_btn').on('click', function(e){
+                    
+                    e.preventDefault();
+                    
+                    window.location.href="radiologists-approval.php?approve=1";
+                    
+                });
+                
+                <?php if(isset($_GET['approve'])): ?>
+                
+                    $('.accpt_tkt_list').trigger('click');
+                
+                <?php endif; ?>
+            });
+
+        </script>
+    
+    </body>
+</html>

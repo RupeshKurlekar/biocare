@@ -1,6 +1,4 @@
 {% include 'header.html' %}
-{% load static %}
-
     <body class="hold-transition light-skin sidebar-mini theme-primary">
 	    <div class="wrapper">
             {% include 'navbar.html' %}
@@ -20,8 +18,13 @@
                                                         <i class="mdi mdi-home-outline"></i>
                                                     </a>
                                                 </li>
+                                                <li class="breadcrumb-item" aria-current="page">
+                                                    <a href="radiologists.php">
+                                                        Radiologist List
+                                                    </a>
+                                                </li>
                                                 <li class="breadcrumb-item active" aria-current="page">
-                                                    <a href="reports.php">
+                                                    <a href="javascript:void(0);">
                                                         Reports
                                                     </a>
                                                 </li>
@@ -45,47 +48,59 @@
                                                 Reports
                                             </h3>
                                             <div class="text-right flex-grow">
-                                                <a href="/add_report" >
-                                                    <button class="btn btn-primary">Upload Scan Copy</button>
+                                                <a href="radiologists.php">
+                                                    <button type="button" class="btn btn-dark">Back</button>
                                                 </a>
                                             </div>
                                         </div>
                                         <!-- /.box-header -->
                                         <div class="box-body">
-                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#send_report_modal" class="btn btn-primary btn-sm mb-4 send_report_btn">
-                                                <i class="fa fa-share"></i> Assign Radiologist
-                                            </a>
                                             <div class="table-responsive">
                                                 <table class="data_tbl table table-bordered table-striped" style="width:100%">
                                                     <thead>
                                                         <tr>
-                                                            <th width="5%">
-                                                                <div data-toggle="tooltip" data-original-title="Select All Reports">
-                                                                    <input type="checkbox" id="selAll" class="filled-in chk-col-primary">
-                                                                    <label for="selAll"></label>               
-                                                                </div>
-                                                            </th>
                                                             <th>Sr. No.</th>
                                                             <th>ID</th>
                                                             <th>Date</th>
-                                                            <th width="20%">Body Part</th>
-                                                            <th>View</th>
+                                                            <th width="20%">Name</th>
                                                             <th>Patient</th>
                                                             <th>Priority</th>
                                                             <th>Status</th>
                                                             <th width="20%">Action</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody class="reports_list">
-                                          
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>#RPT_1</td>
+                                                            <td>03rd May 2021</td>
+                                                            <td>X-RAY CHEST PA VIEW</td>
+                                                            <td>Pawan Kumar</td>
+                                                            <td>Medium</td>
+                                                            <td>Not Assigned</td>
+                                                            <td>
+                                                                <a href="view_radiologist_report.php" ><button class="btn btn-sm btn-warning" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i>&nbsp;View</button></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>#RPT_2</td>
+                                                            <td>25th April 2021</td>
+                                                            <td>X-RAY CERVICAL SPINE AP</td>
+                                                            <td>Kiran Shah</td>
+                                                            <td>High</td>
+                                                            <td>Examining</td>
+                                                            <td>
+                                                                <a href="view_radiologist_report.php"><button class="btn btn-sm btn-warning" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i>&nbsp;View</button></a>
+                                                            </td>
+                                                        </tr>
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
                                                             <th>Sr. No.</th>
                                                             <th>ID</th>
                                                             <th>Date</th>
-                                                            <th width="20%">Body Part</th>
-                                                            <th>View</th>
+                                                            <th width="20%">Name</th>
                                                             <th>Patient</th>
                                                             <th>Priority</th>
                                                             <th>Status</th>
@@ -106,34 +121,6 @@
                         </section>
                         <!-- /.content -->
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="send_report_modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <form action="" method="post">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Assign Radiologist</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <label class="mb-0" for="assign_to">Assign To Radiologist<small class="text-danger">*</small></label>
-                                            <select class="form-control" name="assign_to" id="assign_to">
-                                                <option value="">Select</option>
-                                                <option value="1" >Dr. Ketan Sanghvi</option>
-                                                <option value="2" >Dr. Tejas Sharma</option>
-                                            </select>
-                                        </div>
-                                        <div class="modal-footer text-right" style="width: 100%;">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary" onclick="sendReport(event);">Assign</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
             	    </div>
                 </div>
                  <!-- /.content-wrapper -->
@@ -151,43 +138,6 @@
 	
         <!-- Vendor JS -->
         {% include 'script.html' %}
-        <script src="{% static 'js/report/reports_list.js' %}" ></script>
-
-        <script type="text/javascript">
-
-            $(document).ready(function(){
-                $("#selAll").click(function () {
-                    $('.report_id_arr:checkbox').not(this).prop('checked', this.checked);
-                });
-            });
-
-        </script>
-
-        <script type="text/javascript">
-            $(function() {
-                $('.send_report_btn').hide();
-                $(".report_id_arr, #selAll").click(function () {
-                    if($('.report_id_arr').is(":checked")){
-                        $('.send_report_btn').show();
-                    }else {
-                        $('.send_report_btn').hide();
-                    }
-                });
-            });
-        </script>
-
-        <script>
-            function sendReport(evt) {
-
-                evt.preventDefault();
-
-                $('#send_report_modal').modal('hide');
-
-                swal("Selected reports are successfully assign to radiologist", {
-                      icon: "success",
-                });
-            }
-        </script>
 	
     </body>
 </html>

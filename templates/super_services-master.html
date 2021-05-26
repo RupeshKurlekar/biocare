@@ -1,0 +1,354 @@
+{% include 'header.html' %}
+    <body class="hold-transition light-skin sidebar-mini theme-primary">
+	    <div class="wrapper">
+            {% include 'navbar.html' %}
+            {% include 'sidebar.html' %}
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+            	    <div class="container-full">
+                        <!-- Content Header (Page header) -->
+                        <div class="content-header">
+                            <div class="d-flex align-items-center">
+                                <div class="mr-auto">
+                                    <div class="d-inline-block align-items-center">
+                                        <nav>
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item">
+                                                    <a href="index.php">
+                                                        <i class="mdi mdi-home-outline"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="breadcrumb-item active" aria-current="page">
+                                                    <a href="javascript:void(0);">
+                                                        Service Masters
+                                                    </a>
+                                                </li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="row">
+
+                                <div class="col-12">
+
+                                    <div class="box">
+                                        <div class="box-header with-border flexbox">
+                                            <h3 class="box-title">Service Masters
+                                            </h3>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <ul class="nav nav-tabs nav-fill" role="tablist">
+                                                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#raised_tkt_list" role="tab"><span><i class="mdi mdi-human-greeting"></i></span> <span class="hidden-xs-down ml-15">Body Part</span></a> </li>
+                                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#accpt_tkt_list" role="tab"><span><i class="mdi mdi-check"></i></span> <span class="hidden-xs-down ml-15">Views</span></a> </li>
+                                                <!--<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#ong_tkt_list" role="tab"><span><i class="mdi mdi-search-web"></i></span> <span class="hidden-xs-down ml-15">Ongoing</span></a> </li>-->
+                                                <!--<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#comp_tkt_list" role="tab"><span><i class="mdi mdi-check-all"></i></span> <span class="hidden-xs-down ml-15">Completed</span></a> </li>-->
+                                            </ul>
+                                            <div class="tab-content tabcontent-border">
+                                                <div class="tab-pane active" id="raised_tkt_list" role="tabpanel">
+                                                    <div class="p-15">
+                                                        <div class="text-right mr-5 mb-10">
+                                                            <button class="btn btn-primary" data-toggle="modal" data-target="#raiseTicketModal">Add Body Part</button>
+                                                        </div>
+                                                        <div class="table-responsive">
+                                                            <table class="data_tbl table table-bordered table-striped" style="width:100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>Body Part Name</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>Kub</td>
+                                                                        <td>
+                                                                            <a href="javascript:void(0);" data-toggle="modal" data-target=".editModal"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
+    
+                                                                            <button class="btn btn-sm btn-danger delRow" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+                                                                        </td>
+                                                                      
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>2</td>
+                                                                        <td>Ledt Chest</td>
+                                                                        <td>
+                                                                            <a href="javascript:void(0);" data-toggle="modal" data-target=".editModal"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
+    
+                                                                            <button class="btn btn-sm btn-danger delRow" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+                                                                        </td>
+                                                                        
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>Body Part</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="accpt_tkt_list" role="tabpanel">
+                                                    <div class="p-15">
+                                                        <div class="text-right mr-5 mb-10">
+                                                            <button class="btn btn-primary" data-toggle="modal" data-target="#accpt_tkt_list_modal">Add Views Side</button>
+                                                        </div>
+                                                        <div class="table-responsive">
+                                                            <table class="data_tbl table table-bordered table-striped" style="width:100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>Views Side</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>PL</td>
+                                                                        <td>
+                                                                            <a href="javascript:void(0);" data-toggle="modal" data-target=".editModalaccpt"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
+    
+                                                                            <button class="btn btn-sm btn-danger delRow" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+                                                                        </td>
+                                                                      
+                                                                    </tr>
+                                                                    <tr>
+                                                                       <td>1</td>
+                                                                        <td>Lateral</td>
+                                                                        <td>
+                                                                            <a href="javascript:void(0);" data-toggle="modal" data-target=".editModalaccpt"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
+    
+                                                                            <button class="btn btn-sm btn-danger delRow" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+                                                                        </td>
+                                                                        
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <th>Sr. No.</th>
+                                                                        <th>Body Part</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </section>
+                        <!-- /.content -->
+                        
+                        <div id="raiseTicketModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <form action="" method="POST" >
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Add Body Part</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Body Part Name<small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Enter name" aria-controls="DataTables_Table_1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer text-right" style="width: 100%;">
+                                            <button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>
+                                            <button type="submit" name="submit" class="btn btn-success text-left">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+                        
+                        <div id="raiseTicketModal" class="modal fade editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <form action="" method="POST" >
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Edit Body Part</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Body Part Name<small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Enter name" aria-controls="DataTables_Table_1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer text-right" style="width: 100%;">
+                                            <button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>
+                                            <button type="submit" name="submit" class="btn btn-success text-left">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+                        
+                        <div id="accpt_tkt_list_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <form action="" method="POST" >
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Add Views Side</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Views Side Name<small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Enter name" aria-controls="DataTables_Table_1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer text-right" style="width: 100%;">
+                                            <button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>
+                                            <button type="submit" name="submit" class="btn btn-success text-left">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+                        
+                        <div id="accpt_tkt_list_modal" class="modal fade editModalaccpt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <form action="" method="POST" >
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Edit Views Side</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Views Side Name<small class="text-danger">*</small></label>
+                                                        <input type="text" class="form-control" placeholder="Enter name" aria-controls="DataTables_Table_1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer text-right" style="width: 100%;">
+                                            <button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>
+                                            <button type="submit" name="submit" class="btn btn-success text-left">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+
+            	    </div>
+                </div>
+                 <!-- /.content-wrapper -->
+            {% include 'footer.html' %}
+
+             <!-- Control Sidebar -->
+            
+             <!-- /.control-sidebar -->
+
+             <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+  
+        </div>
+        <!-- ./wrapper -->	 
+	
+        <!-- Vendor JS -->
+        {% include 'script.html' %}
+
+        <script type="text/javascript">
+            
+            $(document).ready(function(){
+
+                $('#report_drop').on('change', function(){
+
+                    var reportVal = $(this).val();
+
+                    if(reportVal!="")
+                    {
+                        $('#rd_div').show();
+
+                        if(reportVal==1)
+                        {
+                            $('#rd_1').show();
+                            $('#rd_2').hide();
+                            $('#tech_1').show();
+                            $('#tech_2').hide();
+                        }
+                        else if(reportVal==2)
+                        {
+                            $('#rd_1').hide();
+                            $('#rd_2').show();
+                            $('#tech_1').hide();
+                            $('#tech_2').show();
+                        }
+                        else
+                        {
+                            $('#rd_1').hide();
+                            $('#rd_2').hide();
+                            $('#tech_1').hide();
+                            $('#tech_2').hide();
+                        }
+                    }
+                    else
+                    {
+                        $('#rd_div').hide();
+                        $('#rd_1').hide();
+                        $('#rd_2').hide();
+                        $('#tech_1').hide();
+                        $('#tech_2').hide();
+                    }
+
+                });
+
+                $('#rd_div').hide();
+                $('#rd_1').hide();
+                $('#rd_2').hide();
+                $('#tech_1').hide();
+                $('#tech_2').hide();
+            });
+
+        </script>
+	
+    </body>
+</html>

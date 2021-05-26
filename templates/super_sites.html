@@ -1,0 +1,156 @@
+{% include 'header.html' %}
+
+    <body class="hold-transition light-skin sidebar-mini theme-primary">
+	    <div class="wrapper">
+            {% include 'navbar.html' %}
+            {% include 'sidebar.html' %}
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+            	    <div class="container-full">
+            		    <!-- Main content -->
+            		    <section class="content">
+            			    <div class="row">
+			                    <div class="col-12">
+
+			                        <div class="box">
+			                            <div class="box-header with-border flexbox">
+                                            <h3 class="box-title">Site List</h3>
+                                            <div class="text-right flex-grow">
+                                                <a href="add_site.php">
+                        					       <button type="button" class="btn btn-primary">Add Site</button>
+                                                </a>
+                                                <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Site</button> -->
+                        					</div>
+                                        </div>
+                        				<!-- /.box-header -->
+                        				<div class="box-body">
+                        					<div class="table-responsive">
+                        					    <table id="example" class="table table-bordered table-striped">
+                        						    <thead>
+                        							    <tr>
+                                                            <th>Sr No</th>
+                                                            <th>Site Name</th>
+                                                            <th>Action</th>
+                        							    </tr>
+                        						    </thead>
+                        						    <tbody>
+                                                    <?php
+                                                      $i=1;
+                                                      if(!empty($fetch_sites)):
+                                                    	    foreach($fetch_sites as $key => $value):
+                                                  	?>						    
+                                                        <tr>
+                                                            <td><?php echo $i; ?></td>
+                                                            <td><?php echo $value['site_name']; ?></td>							
+                                                            <td>
+                                                                <a href="enquries.php?site_id=<?php echo $value['site_id']; ?>">
+                                                                    <button type="button" class="waves-effect waves-light btn btn-google mb-5" data-toggle="tooltip" title="" data-original-title="View Enquiries">
+                                                                        <i class="fa fa-eye" >&nbsp;View</i>
+                                                                    </button>  
+                                                                </a>  
+                                                                <!-- <a href="javascript:void(0);" data-toggle="modal" data-target="#editModal<?php echo $value['site_id']; ?>"> -->
+                                                                <a href="edit_site.php?siteId=<?php echo $value['site_id']; ?>">
+                                                                    <button type="button" class="waves-effect waves-light btn btn-success mb-5" data-toggle="tooltip" title="" data-original-title="Edit">
+                                                                        <i class="fa fa-pencil" >&nbsp;Edit</i>
+                                                                    </button>  
+                                                                </a>
+                                                                
+                                                                <div class="modal fade bs-example-modal-lg" id="editModal<?php echo $value['site_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" >
+                                                                                <div class="modal-header">
+                                                                                    <h4 class="modal-title" id="myLargeModalLabel">Edit Site</h4>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12 col-lg-12">
+                                                                                            <div class="form-group">
+                                                                                                <label>Site Name <small class="text-danger">*</small></label>
+                                                                                                <input type="text" name="siteName" class="form-control" placeholder="Site Name" value="<?php echo $value['site_name']; ?>" required>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="modal-footer text-right" style="width: 100%;">
+                                                                                    <input type="hidden" name="siteId" value="<?php echo $value['site_id']; ?>">
+                                                                                    <button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>
+                                                                                    <button type="submit" name="edit_site" class="btn btn-success text-left">Update</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                        <!-- /.modal-content -->
+                                                                    </div>
+                                                                    <!-- /.modal-dialog -->
+                                                                </div>
+                                                                <!-- /.modal -->
+                                                            </td>
+                                                        </tr>
+                                                        <?php
+                                                                $i++;
+                                                                endforeach;
+                                                            else:  
+                                                        ?>
+                                                        <tr>
+                                                            <td colspan="3"><center>No records found</center></td>
+                                                        </tr>
+                                                        <?php endif; ?>
+                        					        </tbody>
+                    					        </table>
+                    					    </div>
+                    				    </div>
+                    				    <!-- /.box-body -->
+                    			    </div>
+                    			    <!-- /.box -->
+			                    </div>
+                            </div>
+                        </section>
+                        <!-- /.content -->
+                    </div>
+                </div>
+                
+                <div class="modal fade bs-example-modal-lg" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" >
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myLargeModalLabel">Add Site</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12">
+                                            <div class="form-group">
+                                                <label>Site Name <small class="text-danger">*</small></label>
+                                                <input type="text" name="siteName" class="form-control" placeholder="Site Name" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer text-right" style="width: 100%;">
+                                    <button type="button" class="btn btn-danger text-left" data-dismiss="modal">Close</button>
+                                    <button type="submit" name="add_site" class="btn btn-success text-left">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                 <!-- /.content-wrapper -->
+                {% include 'footer.html' %}
+                 <!-- Control Sidebar -->
+                
+                 <!-- /.control-sidebar -->
+                 <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+                 <div class="control-sidebar-bg"></div>
+  
+            </div>
+            <!-- ./wrapper -->	 
+            <!-- Vendor JS -->
+            {% include 'script.html' %}
+    </body>
+</html>
+

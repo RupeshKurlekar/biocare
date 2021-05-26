@@ -1,6 +1,4 @@
 {% include 'header.html' %}
-{% load static %}
-
     <body class="hold-transition light-skin sidebar-mini theme-primary">
 	    <div class="wrapper">
         {% include 'navbar.html' %}
@@ -72,18 +70,25 @@
                                                             
                                                         </div>
                                                     </div> -->
-                                                   
-                                                    <div class="col-md-12 col-lg-12">
+                                                    <div class="col-md-6 col-lg-6">
+                                                        <div class="form-group row">
+                                                            <label class="col-lg-3 col-md-3">Report ID: </label>
+                                                            <label class="font-weight-bold col-lg-9 col-md-9">#RPT_3</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-lg-6">
                                                         <div class="form-group row">
                                                             <label class="col-lg-3 col-md-3">Report Date: </label>
-                                                            <label class="font-weight-bold col-lg-9 col-md-9"> {% now "jS F Y" %}</label>
+                                                            <label class="font-weight-bold col-lg-9 col-md-9">04th Apr 2021</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-5 col-lg-5">
                                                         <div class="form-group">
                                                             <label>Patient <small class="text-danger">*</small></label>
-                                                            <select class="form-control select2 " id="patient" style="width: 100%;" name="patient">
-                                                             
+                                                            <select class="form-control select2" style="width: 100%;" >
+                                                                <option value="">Select</option>
+                                                                <option value="1">Pawan Kumar (9876543210)</option>
+                                                                <option value="2">Kiran Shah (9988776655)</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -95,22 +100,23 @@
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label>Priority <small class="text-danger">*</small></label>
-                                                            <select class="form-control select2" id="priority" style="width: 100%;" name="report_priority">
-                                                               
+                                                            <select class="form-control select2" style="width: 100%;" >
+                                                                <option value="">Select</option>
+                                                                <option value="1">Very High</option>
+                                                                <option value="2">High</option>
+                                                                <option value="3">Medium</option>
+                                                                <option value="4">Low</option>
+                                                                <option value="5">Very Low</option>
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-12">
-                                                        <div class="box bl-4 border-primary">
-                                        
-                                                         
-                                                          </div>
-                                                        </div>
-                                                      </div>
                                                     <div class="col-md-12 col-lg-12">
                                                         <div class="callout callout-info">
-                                                                <p>Only .png, .jpg, jpeg , .dcm files are acceptable.</p>
-                                                                <p>File size must be 10MB or less</p>
+                                                            <h4><i class="icon fa fa-info-circle"></i> Note:</h4>
+                                                            <ul>
+                                                                <li>Only .png, .jpg, jpeg files are acceptable.</li>
+                                                                <li>File size must be 10MB or less</li>
+                                                            </ul>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 col-lg-12">
@@ -118,18 +124,31 @@
                                                             <div class="col-md-4 col-lg-4">
                                                                 <div class="form-group">
                                                                     <label>Report Document: <small class="text-danger">*</small></label>
-                                                                    <input  type="file" name="document" class="form-control" >
+                                                                    <input type="file" name="file" class="form-control" >
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3 col-lg-3" >
                                                                 <label>Body Part: <small class="text-danger">*</small></label>
-                                                                <select name="body_part" class="form-control select2 body_part" id="body_part" style="width: 100%;" >
+                                                                <select class="form-control select2 body_part" style="width: 100%;" >
+                                                                    <option value="">Select Body Part</option>
+                                                                    <option value="1">Kub</option>
+                                                                    <option value="2">Left Chest</option>
+                                                                    <option value="3">Right Chest</option>
+                                                                    <option value="4">Cervical Spine</option>
+                                                                    <option value="5">Dorsal Spine</option>
+                                                                    <option value="6">Lumbar Spine</option>
+                                                                    <option value="7">Dorsal-Lumbar Spine</option>
+                                                                    <option value="8">Adenoids</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-4 col-lg-4" >
                                                                 <label>View: <small class="text-danger">*</small></label>
-                                                                <select class="form-control select2 body_view" id="body_view" name="body_views" data-placeholder="Select View" style="width: 100%;" >
-                                                                 
+                                                                <select class="form-control select2 body_view" name="view[]" data-placeholder="Select View" multiple="multiple" style="width: 100%;" >
+                                                                    <option value="">Select View</option>
+                                                                    <option value="1">PA</option>
+                                                                    <option value="2">LATERAL</option>
+                                                                    <option value="3">AP OBLIQUE</option>
+                                                                    <option value="4">PA OBLIQUE</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-1 col-lg-1" >
@@ -141,10 +160,10 @@
                                                     </div>
                                                     <div class="col-md-12 col-lg-12">
                                                         <label>Remark: </label>
-                                                        <textarea rows="5" class="form-control" placeholder="" id="report_remark"></textarea>
+                                                        <textarea rows="5" class="form-control" placeholder=""></textarea>
                                                     </div>
                                                     <div class="col-md-12 col-lg-12 text-right">
-                                                        <button type="button" name="submit" class="btn btn-success" id="submitReport">Submit</button>
+                                                        <button type="submit" name="submit" class="btn btn-success submit_report">Submit</button>
                                                         <a href="reports.php">
                                                             <button type="button" class="btn btn-dark">Back</button>
                                                         </a>
@@ -235,28 +254,15 @@
                                         </div>
                                         <div class="modal-body">
                                             <label class="mb-0" for="assign_to">Assign To Radiologist<small class="text-danger">*</small></label>
-                                            
-                                            <div class="radio-list">
-                                                <label class="radio-inline p-0 mr-10">
-                                                    <div class="radio radio-info">
-                                                        <input type="radio"  id="type1" value="1" onclick="handleTypeClick(this);" name="radiologist_type" checked>
-                                                        <label for="type1">Technician</label>
-                                                    </div>
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <div class="radio radio-info">
-                                                        <input type="radio"  id="type2" value="2" onclick="handleTypeClick(this);" name="radiologist_type">
-                                                        <label for="type2">Biocare</label>
-                                                    </div>
-                                                </label>
-                                            </div>
                                             <select class="form-control" name="assign_to" id="assign_to">
-                                           
+                                                <option value="">Select</option>
+                                                <option value="1" >Dr. Ketan Sanghvi</option>
+                                                <option value="2" >Dr. Tejas Sharma</option>
                                             </select>
                                         </div>
                                         <div class="modal-footer text-right" style="width: 100%;">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary" onclick="sendReport(event);">Assign</button>
+                                            <button type="submit" class="btn btn-primary" onclick="sendReport(event);">Assign</button>
                                         </div>
                                     </form>
                                 </div>
@@ -315,7 +321,50 @@
 
             $(document).ready(function(){
 
+                var ctr=1;
+                $('.add_file').on('click', function(){
 
+                    $('#upload-files').append('<div class="col-md-4 col-lg-4 rep'+ctr+'"><div class="form-group"><label>Report Document: <small class="text-danger">*</small></label><input type="file" name="file" class="form-control" ></div></div><div class="col-md-3 col-lg-3 rep'+ctr+'" ><label>Body Part: <small class="text-danger">*</small></label><select class="form-control select2 body_part" style="width: 100%;" ><option value="">Select Body Part</option><option value="1">Kub</option><option value="2">Left Chest</option><option value="3">Right Chest</option><option value="4">Cervical Spine</option><option value="5">Dorsal Spine</option><option value="6">Lumbar Spine</option><option value="7">Dorsal-Lumbar Spine</option><option value="8">Adenoids</option></select></div><div class="col-md-4 col-lg-4 rep'+ctr+'" ><label>View: <small class="text-danger">*</small></label><select class="form-control select2 body_view" name="view[]" data-placeholder="Select View" multiple="multiple" style="width: 100%;" ><option value="">Select View</option><option value="1">PA</option><option value="2">LATERAL</option><option value="3">AP OBLIQUE</option><option value="4">PA OBLIQUE</option></select></div><div class="col-md-1 col-lg-1 remove_report rep'+ctr+'" data-ctr="'+ctr+'"><i class="fa fa-minus-circle ml-20 mt-40" data-toggle="tooltip" data-original-title="Remove File"></i></div>');
+
+                    $('.body_part').select2().trigger('change');
+                    $('.body_view').select2().trigger('change');
+
+                    ctr++;
+                });
+
+                $('body').on('click', '.remove_report', function(){
+
+                    var ctrVar = $(this).data('ctr');
+
+                    $('.rep'+ctrVar).remove();
+
+                    ctr--;
+                });
+
+                $('.submit_report').on('click', function(e){
+
+                    e.preventDefault();
+
+                    swal({
+                        title: "Assign report ?",
+                        text: "Do you want to assign report now ?", 
+                        icon: "info",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                      if (willDelete) {
+                            $('#send_report_modal').modal('show');
+                            // swal("Poof! Your imaginary file has been deleted!", {
+                            //   icon: "success",
+                            // });
+                      } else {
+                        $('form').submit();
+                            // swal("Your imaginary file is safe!");
+                      }
+                    });
+
+                });
             });   
             // $(document).ready(function(){
 
@@ -360,11 +409,25 @@
             }
         </script>
 
-        
+        <script>
+            function sendReport(evt) {
+
+                evt.preventDefault();
+
+                $('#send_report_modal').modal('hide');
+
+                swal("Selected reports are successfully assign to radiologist", {
+                      icon: "success",
+                });
+
+                setTimeout(function(){
+                    window.location.href="reports.php";
+                }, 1000);
+            }
+        </script>
 	
         <!-- Vendor JS -->
         {% include 'script.html' %}
-        <script src="{% static 'js/report/add_report.js' %}" ></script>
 	
     </body>
 </html>
