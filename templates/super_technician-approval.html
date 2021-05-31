@@ -1,8 +1,9 @@
 {% include 'header.html' %}
+{%load static%}
     <body class="hold-transition light-skin sidebar-mini theme-primary">
         <div class="wrapper">
-            {% include 'navbar.html' %}
-            {% include 'sidebar.html' %}
+            {% include 'super_navbar.html' %}
+            {% include 'super_sidebar.html' %}
                 <!-- Content Wrapper. Contains page content -->
                 <div class="content-wrapper">
                     <div class="container-full">
@@ -69,30 +70,8 @@
                                                                         <th>Email</th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>#TECH_1</td>
-                                                                        <td>Mayur Shelar</td>
-                                                                        <td>9769123456</td>
-                                                                        <td>mayur@gmail.com</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>2</td>
-                                                                        <td>#TECH_2</td>
-                                                                        <td>Suraj Singh</td>
-                                                                        <td>9785642136</td>
-                                                                        <td>Suraj@gmail.com</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                                <tfoot>
-                                                                    <tr>
-                                                                        <th>Sr. No.</th>
-                                                                        <th>ID</th>
-                                                                        <th>Name</th>
-                                                                        <th>Phone No</th>
-                                                                        <th>Email</th>
-                                                                    </tr>
+                                                                <tbody class="all_technician_apr">
+                                                                    
                                                                 </tfoot>
                                                             </table>
                                                         </div>
@@ -112,26 +91,8 @@
                                                                         <th>Action</th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>#TECH_1</td>
-                                                                        <td>Mayur Shelar</td>
-                                                                        <td>9769123456</td>
-                                                                        <td>mayur@gmail.com</td>
-                                                                       <td><a href="javascript:void(0);" data-toggle="modal" data-target="#modified"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;modified</button></a>
-
-                                                                        <a href="javascript:void(0);" data-toggle="modal" data-target=".viewModal"><button class="btn btn-sm btn-warning" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-eye"></i>&nbsp;view</button></a></td>
-                                                                    <tr>
-                                                                        <td>2</td>
-                                                                        <td>#TECH_2</td>
-                                                                        <td>Suraj Singh</td>
-                                                                        <td>9785642136</td>
-                                                                        <td>Suraj@gmail.com</td>
-                                                                        <td><a href="javascript:void(0);" data-toggle="modal" data-target="#modified"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;modified</button></a>
-
-                                                                        <a href="javascript:void(0);" data-toggle="modal" data-target=".viewModal"><button class="btn btn-sm btn-warning" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-eye"></i>&nbsp;view</button></a></td>
-                                                                    </tr>
+                                                                <tbody class="new_technician_apr">
+                                                                    
                                                                 </tbody>
                                                                 <tfoot>
                                                                     <tr>
@@ -161,25 +122,8 @@
                                                                         <th>Action</th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>#TECH_1</td>
-                                                                        <td>Mayur Shelar</td>
-                                                                        <td>9769123456</td>
-                                                                        <td>mayur@gmail.com</td>
-                                                                        <td style="color:#008000;">Approved</td>
-                                                                        <!-- <td><a href="#"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Approved</button></a></td> -->
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>2</td>
-                                                                        <td>#TECH_2</td>
-                                                                        <td>Suraj Singh</td>
-                                                                        <td>9785642136</td>
-                                                                        <td>Suraj@gmail.com</td>
-                                                                        <td style="color:#008000;">Approved</td>
-                                                                        <!-- <td><a href="#"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Approved</button></a></td> -->
-                                                                    </tr>
+                                                                <tbody class="approved_technician_apr">
+                                                                    
                                                                 </tbody>
                                                                 <tfoot>
                                                                     <tr>
@@ -447,9 +391,11 @@
         <!-- ./wrapper -->   
     
         <!-- Vendor JS -->
-        {% include 'script.html' %}
+        {% include 'super_script.html' %}
 
         <script type="text/javascript">
+        <script src="{% static 'js/super/technician_list.js' %}" ></script>
+
             
             $(document).ready(function(){
 

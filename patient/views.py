@@ -3,9 +3,11 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 
 from .models import Patient, PatientHistoryFiles, PatientHistory
-from .serializers import PatientSerializers, PatientHistorySerializers, PatientHistoryFilesSerializers
+from .serializers import PatientSerializers, PatientHistorySerializers, PatientHistoryFilesSerializers,PatientUpdateSerializers
 import logging
 from random import randint
+from django.views.generic import TemplateView
+from technician.decorator import isuserisLoggedIn
 
 logger = logging.getLogger()
 
@@ -35,8 +37,15 @@ class PatientView(APIView):
         Get all patient
         """
         try:
-            serializer = PatientSerializers(Patient.objects.all(), many=True)
-            return JsonResponse({"message": "listed all", "data": serializer.data}, status=200)
+            type = request.GET.get('type') 
+            tech_id = request.GET.get('tech_id') 
+            if type=='technician':
+                serializer = PatientSerializers(Patient.objects.filter(TECHNICIAN=tech_id), many=True)
+                return JsonResponse({"message": "listed all", "data": serializer.data}, status=200)
+            elif type=='super':
+                serializer = PatientSerializers(Patient.objects.all(), many=True)
+                return JsonResponse({"message": "listed all", "data": serializer.data}, status=200)
+            
         except Exception as e:
             info_message = "Internal Server Error"
             logger.error(info_message, e)
@@ -83,11 +92,12 @@ class PatientView(APIView):
                     return JsonResponse({"message": "created successfully"}, status=200)
                 else:
                     return JsonResponse({"message": patient_serializer.errors}, status=500)
-
         except Exception as error:
             info_message = "Internal Server Error"
             logger.error(info_message, error)
             return JsonResponse({'error': str(info_message)}, status=500)
+
+    
 
 
 class PatientHistoryDetailsView(APIView):
@@ -201,6 +211,58 @@ class PatientHistoryFilesView(APIView):
                     return JsonResponse({"message": "created successfully"}, status=200)
                 else:
                     return JsonResponse({"message": patienthistoryfile_serializer.errors}, status=500)
+
+        except Exception as error:
+            info_message = "Internal Server Error"
+            logger.error(info_message, error)
+            return JsonResponse({'error': str(info_message)}, status=500)
+
+
+class PatientsPage(APIView):
+    @isuserisLoggedIn()
+    def get(self,request,type):
+
+        is_authenticated=False
+        if "is_authenticated" in request.session and "type" in request.session:
+            if type== request.session['type']:
+                type=request.session['type']
+                is_authenticated=request.session['is_authenticated']
+                return render(request, 'patients.html',{"is_authenticated":is_authenticated,"type":type})
+
+
+class PatientUpdateView(APIView):
+    def post(self, request):
+        """
+        UPDATE patient data
+        """
+        try:
+
+            if request.data['PT_NAME'] == "":
+                return JsonResponse({'error': "PLease enter Name"}, status=500)
+            if request.data['PT_GENDER'] == "":
+                return JsonResponse({'error': "PLease enter Gender"}, status=500)
+            if request.data['PT_AGE'] == "":
+                return JsonResponse({'error': "PLease enter Age"}, status=500)
+            if request.data['PT_MOB'] == "":
+                return JsonResponse({'error': "PLease enter Mobile Number"}, status=500)
+
+            else:
+
+                patient_serializer = PatientUpdateSerializers(data=request.data)
+
+                if patient_serializer.is_valid():
+                    
+                    patient=Patient.objects.get(id= request.data['id'])
+                    patient.PT_NAME = request.data['PT_NAME']
+                    patient.PT_GENDER = request.data['PT_GENDER']
+                    patient.PT_AGE = request.data['PT_AGE']
+                    patient.PT_MOB = request.data['PT_MOB']
+                    patient.save()
+
+
+                    return JsonResponse({"message": "updated successfully"}, status=200)
+                else:
+                    return JsonResponse({"message": patient_serializer.errors}, status=500)
 
         except Exception as error:
             info_message = "Internal Server Error"

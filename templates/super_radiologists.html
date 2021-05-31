@@ -1,8 +1,9 @@
 {% include 'header.html' %}
+{%load statis%}
     <body class="hold-transition light-skin sidebar-mini theme-primary">
 	    <div class="wrapper">
-            {% include 'navbar.html' %}
-            {% include 'sidebar.html' %}
+            {% include 'super_navbar.html' %}
+            {% include 'super_sidebar.html' %}
                 <!-- Content Wrapper. Contains page content -->
                 <div class="content-wrapper">
             	    <div class="container-full">
@@ -62,35 +63,8 @@
                                                             <th width="20%">Action</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>#RDLG_1</td>
-                                                            <td>Dr. Ketan Sanghvi</td>
-                                                            <td>9769123456</td>
-                                                            <td>Ketan@gmail.com</td>
-                                                            <td>bone</td>
-                                                            <td>Andheri</td>
-                                                            <td>
-                                                                <a href="javascript:void(0);" data-toggle="modal" data-target=".editModal"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
-                                                                <a href="javascript:void(0);" data-toggle="modal" data-target=".viewModal"><button class="btn btn-sm btn-warning" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i>&nbsp;View</button></a>
-                                                                <button class="btn btn-sm btn-danger delRow" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>2</td>
-                                                            <td>#RDLG_2</td>
-                                                            <td>Dr. Tejas Sharma</td>
-                                                            <td>9769123456</td>
-                                                            <td>Tejas@gmail.com</td>
-                                                            <td>bone</td>
-                                                            <td>Mahim</td>
-                                                            <td>
-                                                                <a href="javascript:void(0);" data-toggle="modal" data-target=".editModal"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
-                                                                <a href="javascript:void(0);" data-toggle="modal" data-target=".viewModal"><button class="btn btn-sm btn-warning" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i>&nbsp;View</button></a>
-                                                                <button class="btn btn-sm btn-danger delRow" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
-                                                            </td>
-                                                        </tr>
+                                                    <tbody class="super_radiologist">
+                                                        
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
@@ -363,6 +337,7 @@
 	
         <!-- Vendor JS -->
         {% include 'script.html' %}
+        <script src="{% static 'js/super/radiologist.js' %}" ></script>
 	
     </body>
 </html>

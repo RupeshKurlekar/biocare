@@ -7,6 +7,11 @@ class PatientSerializers(serializers.ModelSerializer):
         model = Patient
         exclude=['PT_REG_NO']
 
+class PatientUpdateSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Patient
+        exclude=['PT_REG_NO','TECHNICIAN']
+
 
 class PatientHistorySerializers(serializers.ModelSerializer):
     class Meta:

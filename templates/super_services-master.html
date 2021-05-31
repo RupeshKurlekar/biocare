@@ -65,27 +65,8 @@
                                                                         <th>Action</th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>Kub</td>
-                                                                        <td>
-                                                                            <a href="javascript:void(0);" data-toggle="modal" data-target=".editModal"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
-    
-                                                                            <button class="btn btn-sm btn-danger delRow" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
-                                                                        </td>
-                                                                      
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>2</td>
-                                                                        <td>Ledt Chest</td>
-                                                                        <td>
-                                                                            <a href="javascript:void(0);" data-toggle="modal" data-target=".editModal"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
-    
-                                                                            <button class="btn btn-sm btn-danger delRow" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
-                                                                        </td>
-                                                                        
-                                                                    </tr>
+                                                                <tbody class="super_services_master">
+
                                                                 </tbody>
                                                                 <tfoot>
                                                                     <tr>
@@ -112,27 +93,8 @@
                                                                         <th>Action</th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>PL</td>
-                                                                        <td>
-                                                                            <a href="javascript:void(0);" data-toggle="modal" data-target=".editModalaccpt"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
-    
-                                                                            <button class="btn btn-sm btn-danger delRow" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
-                                                                        </td>
-                                                                      
-                                                                    </tr>
-                                                                    <tr>
-                                                                       <td>1</td>
-                                                                        <td>Lateral</td>
-                                                                        <td>
-                                                                            <a href="javascript:void(0);" data-toggle="modal" data-target=".editModalaccpt"><button class="btn btn-sm btn-success" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
-    
-                                                                            <button class="btn btn-sm btn-danger delRow" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash"></i>&nbsp;Delete</button>
-                                                                        </td>
-                                                                        
-                                                                    </tr>
+                                                                <tbody class="bodypart_view">
+                                                                    
                                                                 </tbody>
                                                                 <tfoot>
                                                                     <tr>
@@ -281,7 +243,7 @@
             	    </div>
                 </div>
                  <!-- /.content-wrapper -->
-            {% include 'footer.html' %}
+            {% include 'super_footer.html' %}
 
              <!-- Control Sidebar -->
             
@@ -294,7 +256,9 @@
         <!-- ./wrapper -->	 
 	
         <!-- Vendor JS -->
-        {% include 'script.html' %}
+        {% include 'super_script.html' %}
+        <script src="{% static 'js/super/services_master_list.js' %}" ></script>
+
 
         <script type="text/javascript">
             
