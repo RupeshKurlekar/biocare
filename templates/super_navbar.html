@@ -29,34 +29,17 @@
                     <div class="app-menu">
                         <div class="search-bx mx-5 pt-10">
                             <p class="mb-0">
-                                <?php  
-                                    date_default_timezone_set('Asia/Kolkata');
-
-                                    $greetings="";
-                                    /* This sets the $time variable to the current hour in the 24 hour clock format */
-                                    $time = date("H");
-                                    /* Set the $timezone variable to become the current timezone */
-                                    $timezone = date("e");
-                                    /* If the time is less than 1200 hours, show good morning */
-                                    if ($time < "12") {
-                                        $greetings="<i class='wi wi-day-sunny'></i>&nbsp;Good morning";
-                                    } else
-                                    /* If the time is grater than or equal to 1200 hours, but less than 1700 hours, so good afternoon */
-                                    if ($time >= "12" && $time < "17") {
-                                        $greetings="<i class='wi wi-day-cloudy'></i>&nbsp;Good afternoon";
-                                    } else
-                                    /* Should the time be between or equal to 1700 and 1900 hours, show good evening */
-                                    if ($time >= "17" && $time < "19") {
-                                        $greetings="<i class='wi wi-day-haze'></i>&nbsp;Good evening";
-                                    } else
-                                    /* Finally, show good night if the time is greater than or equal to 1900 hours */
-                                    if ($time >= "19") {
-                                        $greetings="<i class='wi wi-moon-alt-waxing-cresent-1'></i>&nbsp;Good night";
-                                    }
-
-                                    echo $greetings;
-
-                                ?>
+                                {% now "H" as time %}
+                                
+                                        {% if time < "12" %}
+                                        <i class='wi wi-day-sunny'></i>&nbsp;Good morning
+                                        {% elif time >= "12" and time < "17" %}
+                                        <i class='wi wi-day-cloudy'></i>&nbsp;Good afternoon
+                                        {% elif time >= "17" and time < "19" %}
+                                        <i class='wi wi-day-haze'></i>&nbsp;Good evening
+                                        {% elif time >= "19"  %}
+                                        <i class='wi wi-moon-alt-waxing-cresent-1'></i>&nbsp;Good night
+                                        {% endif %}
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
                         </div>

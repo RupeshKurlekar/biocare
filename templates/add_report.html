@@ -1,5 +1,6 @@
 {% include 'header.html' %}
 {% load static %}
+<link href="{% static 'css/master.css' %}" rel="stylesheet">
 
     <body class="hold-transition light-skin sidebar-mini theme-primary">
 	    <div class="wrapper">
@@ -108,10 +109,11 @@
                                                         </div>
                                                       </div>
                                                     <div class="col-md-12 col-lg-12">
-                                                        <div class="callout callout-info">
-                                                                <p>Only .png, .jpg, jpeg , .dcm files are acceptable.</p>
-                                                                <p>File size must be 10MB or less</p>
-                                                        </div>
+                                                        <div class="info">
+                                                            <p><strong>Note</strong> Only .png, .jpg, jpeg , .dcm files are acceptable. </p>
+                                                            <p>File size must be 10MB or less</p>
+                                                          </div>
+                                                       
                                                     </div>
                                                     <div class="col-md-12 col-lg-12">
                                                         <div class="form-group row" id="upload-files">
@@ -141,7 +143,7 @@
                                                     </div>
                                                     <div class="col-md-12 col-lg-12">
                                                         <label>Remark: </label>
-                                                        <textarea rows="5" class="form-control" placeholder="" id="report_remark"></textarea>
+                                                        <textarea rows="5" class="form-control" placeholder="" id="report_remark" maxlength="255"></textarea>
                                                     </div>
                                                     <div class="col-md-12 col-lg-12 text-right">
                                                         <button type="button" name="submit" class="btn btn-success" id="submitReport">Submit</button>
@@ -254,7 +256,7 @@
                                            
                                             </select>
                                         </div>
-                                        <div class="modal-footer text-right" style="width: 100%;">
+                                        <div class="modal-footer text-right " style="width: 100%;">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="button" class="btn btn-primary" onclick="sendReport(event);">Assign</button>
                                         </div>

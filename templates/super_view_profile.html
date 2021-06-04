@@ -1,8 +1,9 @@
 {% include 'header.html' %}
+{%load static%}
     <body class="hold-transition light-skin sidebar-mini theme-primary">
 	    <div class="wrapper">
-            {% include 'navbar.html' %}
-            {% include 'sidebar.html' %}
+            {% include 'super_navbar.html' %}
+            {% include 'super_sidebar.html' %}
                 <!-- Content Wrapper. Contains page content -->
                 <div class="content-wrapper">
             	    <div class="container-full">
@@ -62,12 +63,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-lg-6">
-                                                    <h3 class="mt-30">Lifecare Pathology</h3>
+                                                    <h3 class="super_name mt-30"></h3>
                                                 </div>
                                                 <div class="col-md-12 col-lg-12 mt-20">
                                                     <div class="form-group row">
                                                         <label class="col-lg-2 col-md-2">Address: </label>
-                                                        <label class="font-weight-bold col-lg-10 col-md-10">Counts Building, Bandra (E), Mumbai, Maharashtra, Pincode: 400051</label>
+                                                        <label class="super_name font-weight-bold col-lg-10 col-md-10">Counts Building, Bandra (E), Mumbai, Maharashtra, Pincode: 400051</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 col-lg-12">
@@ -118,6 +119,7 @@
 	
         <!-- Vendor JS -->
         {% include 'script.html' %}
+        <script src="{% static 'js/super/my_profile.js' %}"></script>
 	
     </body>
 </html>

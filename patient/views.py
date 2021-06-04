@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from rest_framework.views import APIView
 
@@ -12,6 +12,7 @@ from technician.decorator import isuserisLoggedIn
 logger = logging.getLogger()
 
 from technician.models import Technician
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -40,10 +41,10 @@ class PatientView(APIView):
             type = request.GET.get('type') 
             tech_id = request.GET.get('tech_id') 
             if type=='technician':
-                serializer = PatientSerializers(Patient.objects.filter(TECHNICIAN=tech_id), many=True)
+                serializer = PatientSerializers(Patient.objects.filter(TECHNICIAN=tech_id).filter(IS_DELETED=False), many=True)
                 return JsonResponse({"message": "listed all", "data": serializer.data}, status=200)
             elif type=='super':
-                serializer = PatientSerializers(Patient.objects.all(), many=True)
+                serializer = PatientSerializers(Patient.objects.filter(IS_DELETED=False), many=True)
                 return JsonResponse({"message": "listed all", "data": serializer.data}, status=200)
             
         except Exception as e:
@@ -134,10 +135,8 @@ class PatientHistoryView(APIView):
         Save patient data
         """
         try:
-            if request.data['IS_SENT'] == "":
-                return JsonResponse({'error': "PLease enter status"}, status=500)
-            if request.data['RP_REMARKS'] == "":
-                return JsonResponse({'error': "PLease enter remarks"}, status=500)
+            
+           
             if request.data['PATIENT'] == "":
                 return JsonResponse({'error': "PLease select patient"}, status=500)
 
@@ -151,7 +150,7 @@ class PatientHistoryView(APIView):
                     else:
                         PT_HSTY_ID = 'PTHS_1'
                     patienthistory_serializer.validated_data['PT_HSTY_ID'] = PT_HSTY_ID
-                    patienthistory_serializer.validated_data['IS_SENT'] = request.data['IS_SENT']
+                    patienthistory_serializer.validated_data['IS_SENT'] = False
                     patienthistory_serializer.validated_data['RP_REMARKS'] = request.data['RP_REMARKS']
                     patienthistory_serializer.validated_data['PATIENT'] = Patient.objects.get(
                         id=request.data['PATIENT'])
@@ -228,7 +227,8 @@ class PatientsPage(APIView):
                 type=request.session['type']
                 is_authenticated=request.session['is_authenticated']
                 return render(request, 'patients.html',{"is_authenticated":is_authenticated,"type":type})
-
+            else:
+                return HttpResponseRedirect(reverse_lazy('login'))
 
 class PatientUpdateView(APIView):
     def post(self, request):
@@ -268,3 +268,32 @@ class PatientUpdateView(APIView):
             info_message = "Internal Server Error"
             logger.error(info_message, error)
             return JsonResponse({'error': str(info_message)}, status=500)
+
+class DeletePatientView(APIView):
+    def get(self,request,id):
+            
+        """
+        delete patient
+        """
+        try:
+            patient=Patient.objects.get(id=id)
+            patient.IS_DELETED=True
+            patient.save()
+            return JsonResponse({"message": "patient deleted successfully"}, status=200)
+        except Exception as e:
+            info_message = "Internal Server Error"
+            logger.error(info_message, e)
+            return JsonResponse({'error': str(info_message)}, status=500)
+
+class RadiologistPatientHistoryPage(APIView):
+    @isuserisLoggedIn()
+    def get(self,request):
+
+        is_authenticated=False
+        if "is_authenticated" in request.session and "type" in request.session:
+            if request.session['type']=="radiologist":
+                type=request.session['type']
+                is_authenticated=request.session['is_authenticated']
+                return render(request, 'radiologist_send_patient_history.html',{"is_authenticated":is_authenticated,"type":type})
+            else:
+                return HttpResponseRedirect(reverse_lazy('login'))

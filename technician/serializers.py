@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Technician,TechnicianPriority
+from .models import Technician,TechnicianPriority,Wallet
 
 
 class TechnicianListSerializers(serializers.ModelSerializer):
@@ -18,3 +18,7 @@ class TechnicianPrioritySerializers(serializers.ModelSerializer):
         model = TechnicianPriority
         fields = "__all__"
 
+class WalletSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Wallet
+        fields="__all__"

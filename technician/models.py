@@ -1,6 +1,7 @@
 from django.core.validators import RegexValidator
 from django.db import models
 from master.models import Priority
+
 name_regex = RegexValidator(regex=r'^[a-zA-Z ]+$', message="Please enter valid name")
 
 
@@ -10,7 +11,7 @@ class Technician(models.Model):
     TECH_MOB = models.CharField(max_length=12)
     TECH_EMAIL = models.EmailField(max_length=255)
     TECH_PASSWORD = models.CharField(max_length=255)
-    TECH_IMG = models.ImageField(upload_to="technician_profile_pic")  # image
+    TECH_IMG = models.ImageField(upload_to="technician_profile_pic",blank=True,null=True)  # image
     TECH_ADDRESS = models.TextField(max_length=255)
     CREATED_AT = models.DateTimeField(auto_now_add=True)
     IS_APPROVED = models.BooleanField(default=False)
@@ -35,7 +36,20 @@ class TechnicianLogin(models.Model):
         db_table = 'Technician Login'
 
     def __str__(self):
-        return self.TECHNICIAN
+        return self.TECHNICIAN.TECH_NAME
+
+
+class Wallet(models.Model):
+    TECHNICIAN = models.ForeignKey(Technician, on_delete=models.CASCADE, null=False, blank=False)
+    WALLET_AMT=models.CharField(max_length=255, blank=False, null=False)
+    CREATED_AT=models.DateTimeField(auto_now_add=True)
+    UPDATED_AT=models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'Wallet'
+    
+    def __str__(self):
+        return self.TECHNICIAN.TECH_NAME
 
 class TechnicianPriority(models.Model):
     PRIORITY = models.ForeignKey(Priority, on_delete=models.CASCADE, null=False, blank=False)
@@ -46,6 +60,5 @@ class TechnicianPriority(models.Model):
         db_table = 'Technician Priority'
     
     def __str__(self):
-        return self.PRIORITY
-
+        return self.PRIORITY.NAME
 

@@ -14,7 +14,8 @@ class Patient(models.Model):
     PT_AGE = models.CharField(max_length=255)
     PT_MOB = models.CharField(max_length=255)
     TECHNICIAN = models.ForeignKey(Technician, on_delete=models.CASCADE, blank=False)  # fk
-    TIME = models.DateTimeField(auto_now=True)
+    IS_DELETED=models.BooleanField(default=0,blank=True, null=True)
+    CREATED_DATE = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'Patient'
@@ -25,10 +26,10 @@ class Patient(models.Model):
 
 class PatientHistory(models.Model):
     PT_HSTY_ID = models.CharField(max_length=255, blank=True)
-    IS_SENT = models.IntegerField(default=0)
-    RP_REMARKS = models.TextField(max_length=255)
+    IS_SENT = models.BooleanField(default=False)
+    RP_REMARKS = models.TextField()
     PATIENT = models.ForeignKey(Patient, on_delete=models.CASCADE, blank=False)  # fk
-    TIME = models.DateTimeField(auto_now=True)
+    CREATED_DATE = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'Patient History'

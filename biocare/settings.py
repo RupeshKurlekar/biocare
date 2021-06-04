@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'radiologist',
     'technician',
     'master',
-    'super'
+    'super',
+  
 
 ]
 
@@ -55,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+ 
+
 ]
 
 ROOT_URLCONF = 'biocare.urls'

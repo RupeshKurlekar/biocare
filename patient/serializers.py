@@ -17,6 +17,7 @@ class PatientHistorySerializers(serializers.ModelSerializer):
     class Meta:
         model = PatientHistory
         fields = '__all__'
+        depth=1
 
 
 class PatientHistoryFilesSerializers(serializers.ModelSerializer):

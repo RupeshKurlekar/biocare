@@ -8,6 +8,8 @@ urlpatterns = [
     path('super/login', LoginPage.as_view(), name="login"),
     path('super/login-api', LoginSuper.as_view(), name="login-api"),
     path('super/logout-api', SuperLogout.as_view(), name="logout-api"),
+    path('super/change_password', SuperChangePasswordPage.as_view(), name="change_password"),
+    path('change-password-api/<id>', ChangePasswordAPIView.as_view(), name="change_password"),
     path('super/technician-approval',TechnicianApprovalPage.as_view(),name="technician_approval"),
     path('super/radiologist-approval',RadiologistApprovalPage.as_view(),name="radiologist_approval"),
     path('super/technician',TechnicianPage.as_view(),name="technician"),
@@ -18,6 +20,9 @@ urlpatterns = [
     path('super/priority-masters',PriorityMastersPage.as_view(),name="priority_masters"),
     path('super/services-master',ServicesMasterPage.as_view(),name="services_master"),
     path('super/payment-management',PaymentManagementPage.as_view(),name="payment_management")
+    path('super/view_profile', SuperProfilePage.as_view(), name="view_profile"),
+    path('super-detail-view-api/<id>', SuperDetailsView.as_view(), name="superdetails_view"),
 
 
 ]
+ 

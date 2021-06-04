@@ -2,7 +2,7 @@ from django.db import models
 from reports.models import Report
 from technician.models import Technician
 from django.core.validators import RegexValidator
-from master.models import ReportStatus,Priority
+from master.models import Priority, ReportStatus
 
 name_regex = RegexValidator(regex=r'^[a-zA-Z ]+$', message="Please enter valid name")
 
@@ -61,7 +61,7 @@ class RadiologistReportFiles(models.Model):
         db_table = 'Radiologist Report Files'
 
     def __str__(self):
-        return self.RDLG_RPT_FILE
+        return self.REPORT.RP_ID
 
 
 class RadiologistPmt(models.Model):
@@ -90,14 +90,29 @@ class RadiologistLogin(models.Model):
         return self.RADIOLOGIST
 
 class RadiologistPriority(models.Model):
-    RADIOLOGIST = models.ForeignKey(Radiologist, on_delete=models.CASCADE, null=False, blank=False)
     PRIORITY = models.ForeignKey(Priority, on_delete=models.CASCADE, null=False, blank=False)
+    RADIOLOGIST = models.ForeignKey(Radiologist, on_delete=models.CASCADE, blank=True,null=True)
     RADIOLOGIST_PRICE = models.CharField(max_length=255)
 
     class Meta:
         db_table = 'Radiologist Priority'
     
     def __str__(self):
-        return self.PRIORITY
-    
+        return self.PRIORITY.NAME
 
+
+class TransactionLog(models.Model):
+    TRANS_ID= models.CharField(max_length=255, blank=True)
+    TECHNICIAN = models.ForeignKey(Technician, on_delete=models.CASCADE, blank=True,null=True)
+    RADIOLOGIST = models.ForeignKey(Radiologist, on_delete=models.CASCADE, blank=True,null=True)
+    AMOUNT=models.CharField(max_length=55)
+    REPORTS_COUNT=models.CharField(max_length=55)
+    REPORTS_DESCRIPTION=models.TextField()
+    REMARK=models.TextField()
+
+
+    class Meta:
+        db_table = 'Transaction Log'
+    
+    def __str__(self):
+        return self.RADIOLOGIST.RDLG_NAME

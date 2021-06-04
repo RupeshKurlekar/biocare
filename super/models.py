@@ -10,6 +10,7 @@ class Super(models.Model):
     SUPER_MOB = models.CharField(max_length=12)
     SUPER_EMAIL = models.EmailField(max_length=255)
     SUPER_PASSWORD = models.CharField(max_length=255)
+    SUPER_IMG = models.ImageField(upload_to="super_profile_pic",blank=True,null=True)  # image
     TIME = models.DateTimeField(auto_now=True)
 
     class Meta:

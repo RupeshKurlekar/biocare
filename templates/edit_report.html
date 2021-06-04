@@ -74,7 +74,7 @@
                                             <div class="form-group">
                                                 <label>Patient <small class="text-danger">*</small></label>
                                                 <select class="form-control select2 patient" id="patient"
-                                                    style="width: 100%;">
+                                                    style="width: 100%;" name="patient">
 
                                                 </select>
                                             </div>
@@ -82,7 +82,7 @@
                                         <div class="col-md-6 col-lg-6">
                                             <div class="form-group">
                                                 <label>Priority <small class="text-danger">*</small></label>
-                                                <select class="form-control select2" id="priority" style="width: 100%;">
+                                                <select class="form-control select2" id="priority" name="report_priority" style="width: 100%;">
 
                                                 </select>
                                             </div>
@@ -99,7 +99,7 @@
 
                                         <div class="col-md-12 col-lg-12">
                                             <div class="form-group row" id="upload-files">
-
+<!-- 
                                                 <div class="col-md-4 col-lg-4">
                                                     <div class="form-group">
                                                         <label>Report Document: <small
@@ -120,13 +120,8 @@
                                                         data-placeholder="Select View" style="width: 100%;">
 
                                                     </select>
-                                                </div>
-                                                <div class="col-md-1 col-lg-1">
-                                                    <span class="add_file">
-                                                        <i class="fa fa-plus-circle ml-20 mt-40" data-toggle="tooltip"
-                                                            data-original-title="Add File"></i>
-                                                    </span>
-                                                </div>
+                                                </div> -->
+                                               
 
 
                                             </div>
@@ -134,7 +129,7 @@
                                         <div class="col-md-12 col-lg-12">
                                             <label>Remark: </label>
                                             <textarea rows="5" class="form-control" placeholder=""
-                                                id="remark"></textarea>
+                                                id="report_remark" maxlength="255"></textarea>
                                         </div>
                                     </div>
                                 </div>

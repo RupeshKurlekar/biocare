@@ -100,6 +100,67 @@ class BasePage(APIView):
 
             return HttpResponseRedirect(reverse_lazy('login'))
 
+class SuperChangePasswordPage(APIView):
+    @isuserisLoggedIn()
+    def get(self,request):
+        return render(request, 'super_change_password.html')
+
+class ChangePasswordAPIView(APIView):
+
+    def post(self, request, id):
+        """
+        change super password
+        """
+        try:
+            if request.data['SUPER_OLD_PASSWORD'] == "":
+                return JsonResponse({'error': "PLease enter old password"}, status=500)
+            if request.data['SUPER_PASSWORD'] == "":
+                return JsonResponse({'error': "PLease enter new  password"}, status=500)
+            else:
+                password=request.data['SUPER_OLD_PASSWORD']
+                super=Super.objects.get(id=id)
+                if super:
+                    print('password',password,request.data['SUPER_PASSWORD'])
+                    check_pwd = check_password(password, super.SUPER_PASSWORD)
+                    if check_pwd:
+                        new_password=make_password(request.data['SUPER_PASSWORD'])
+                        super.SUPER_PASSWORD=new_password
+                        super.save()
+            
+                        return JsonResponse({"message":"Password changes successfully"}, status=200)
+                    else:
+                        return JsonResponse({"message": "Old password did not match"}, status=500)
+                else:
+                    return JsonResponse({"data": ""}, status=200)
+
+        except Exception as e:
+            info_message = "Internal Server Error"
+            logger.error(info_message, e)
+            return JsonResponse({'error': str(info_message)}, status=500)
+
+class SuperDetailsView(APIView):
+
+    def get(self, request, id):
+        """
+        Get super details
+        """
+        try:
+            serializer = SuperListSerializers(Super.objects.get(pk=id))
+            return JsonResponse({"message": "listed all", "data": serializer.data}, status=200)
+        except Exception as e:
+            info_message = "Internal Server Error"
+            logger.error(info_message, e)
+            return JsonResponse({'error': str(info_message)}, status=500)
+
+class SuperProfilePage(APIView):
+    @isuserisLoggedIn()
+    def get(self,request):
+        is_authenticated=False
+        if "is_authenticated" in request.session:
+
+            is_authenticated=request.session['is_authenticated']
+            return render(request, 'super_view_profile.html',{"is_authenticated":is_authenticated})
+
 class DashboardPage(TemplateView):
     template_name='super_index.html'
     

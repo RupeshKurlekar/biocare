@@ -15,6 +15,7 @@ def isuserisLoggedIn():
                     request.session['is_authenticated'] = True
                     return func(self, request, *args, **kwargs)
                 if request.session['type'] == "radiologist":
+                    
                     request.session['is_authenticated'] = True
                     return func(self, request, *args, **kwargs)
                 # if request.session['TYPE'] == "EXHIBITOR":

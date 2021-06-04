@@ -1,7 +1,7 @@
 from django.db import models
 from patient.models import Patient
 from master.models import Priority, TicketStatus, BodyPart, BodyPartView
-#import magic
+import magic
 from django.core.files.images import get_image_dimensions
 from django.core.exceptions import ValidationError
 
@@ -9,21 +9,15 @@ from django.core.exceptions import ValidationError
 
 def validate_image(value):
     file=value.file
-    # file_type=magic.from_file(value.file, mime=True)
     initial_pos = file.tell()
     file.seek(0)
     mime_type = magic.from_buffer(file.read(1024), mime=True)
     file.seek(initial_pos)
-    print(mime_type)
     if mime_type !="image/jpeg" and mime_type != "application/dicom" and mime_type != "image/png":
-        raise ValidationError("Enter valid image format")
+        raise ValidationError("Enter valid image format",code=412)
 
 
 
-    # image_height = image_dimension[1]
-    # image_width = image_dimension[0]
-    # if image_height != 400 or image_width != 400:
-    #     raise ValidationError("Height or Width is larger than what is allowed. Please upload image in  400 X 400 pixels")
 
 
 class Report(models.Model):
@@ -33,7 +27,8 @@ class Report(models.Model):
     RP_PRIORITY = models.ForeignKey(Priority, on_delete=models.CASCADE, blank=False)  # fk
     RP_REMARKS = models.TextField(max_length=255,blank=True)
     PATIENT = models.ForeignKey(Patient, on_delete=models.CASCADE, blank=False)  # fk
-    CREATED_DATE = models.DateTimeField(auto_now=True)
+    IS_DELETED=models.BooleanField(default=0,blank=True, null=True)
+    CREATED_DATE = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'Report'
@@ -59,13 +54,11 @@ class ReportFiles(models.Model):
 class Tickets(models.Model):
     TKT_ID = models.CharField(max_length=255, blank=True)
     TKT_REG_NO = models.CharField(max_length=255, blank=True)
-    TKT_STATUS = models.ForeignKey(TicketStatus, on_delete=models.CASCADE, blank=False)
-    TKT_DATE = models.DateTimeField(auto_now=True)  # date
-    TKT_TIME = models.DateTimeField(auto_now=True)  # time
+    TKT_STATUS = models.CharField(max_length=50, blank=True)
     PATIENT = models.ForeignKey(Patient, on_delete=models.CASCADE, blank=False)  # fk
     REPORT = models.ForeignKey(Report, on_delete=models.CASCADE, blank=False)
     TKT_REMARKS = models.TextField(max_length=255)
-    CREATED_DATE = models.DateTimeField(auto_now=True)
+    CREATED_DATE = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'Tickets'
@@ -74,13 +67,15 @@ class Tickets(models.Model):
         return self.TKT_ID
 
 
-class ReportRadiologist(models.Model):
-    REPORT = models.ForeignKey(Report, on_delete=models.CASCADE, blank=False)
-    RADIOLOGIST=models.ManyToManyField("radiologist.Radiologist",blank=True)
-
+class TicketRadiologistMap(models.Model):
+    TICKET = models.ForeignKey(Tickets, on_delete=models.CASCADE, blank=False)
+    RADIOLOGIST=models.ForeignKey("radiologist.Radiologist",blank=False,on_delete=models.CASCADE)
+    CREATED_DATE = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        db_table = 'Report Radiologist'
+        db_table = 'Ticket Radiologist Map'
 
     
+
+
 
